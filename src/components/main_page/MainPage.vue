@@ -34,7 +34,8 @@ export default {
   .nav-bar {
     position: fixed;
     top: 0;
-    width: 95%;
+    right: 0;
+    margin-right: 20px;
   }
   .iota-logo {
     filter: invert(100%);
