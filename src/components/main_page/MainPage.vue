@@ -4,9 +4,10 @@
     <img class="iota-logo" src="@/assets/Iota_logo.png" alt="IOTA Logo">
     <p>Tangle-Drive can be used to upload files to the Tangle to share them securely.</p>
     <p>You simply select a file and receive a bundle hash which is needed to find and download your uploaded file.</p>
+    <br>
     <p>As we are using 0 Value IOTA Transactions your files will be deleted during the next Snapshot.</p>
     <p>We are already working one a version of Tangle-Drive which allows you to store your files permanently.</p>
-    <br/>
+    <br>
     <button-group></button-group>
   </div>
 </template>
