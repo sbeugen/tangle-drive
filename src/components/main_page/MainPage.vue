@@ -38,7 +38,7 @@ export default {
     height: 100px;
     margin-top: 150px;
     margin-bottom: 50px;
-    margin-left: 90px;
+    margin-left: 110px;
   }
   button-group {
     margin-top: 50px;
