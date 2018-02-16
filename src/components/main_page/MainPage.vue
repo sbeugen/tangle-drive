@@ -9,6 +9,7 @@
     <p>We are already working one a version of Tangle-Drive which allows you to store your files permanently.</p>
     <br>
     <button-group></button-group>
+    <!-- Hier mit v-if entweder Upload oder Downloadbereich anzeigen -->
   </div>
 </template>
 
