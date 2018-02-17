@@ -31,7 +31,7 @@
     margin: 0;
   }
   button:hover {
-    background: royalblue;
+    border-color: skyblue;
   }
   .bundle-hash {
     width: 500px;

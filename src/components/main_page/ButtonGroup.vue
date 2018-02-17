@@ -54,7 +54,7 @@
     margin: 0;
   }
   button:hover {
-    background: royalblue;
+   border-color: skyblue;
   }
   .upload_active, .download_active {
     background-color: skyblue;
