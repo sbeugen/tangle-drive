@@ -12,6 +12,7 @@
     <br>
     <br>
     <upload-section v-show="getUploadActive"></upload-section>
+    <download-section v-show="getDownloadActive"></download-section>
   </div>
 </template>
 
@@ -19,6 +20,7 @@
 import NavBar from '../NavBar'
 import ButtonGroup from './ButtonGroup'
 import UploadSection from './upload_section/UploadSection'
+import DownloadSection from './download_section/DownloadSection'
 
 import { mapGetters } from 'vuex'
 
@@ -26,11 +28,15 @@ export default {
   components: {
     NavBar,
     ButtonGroup,
-    UploadSection
+    UploadSection,
+    DownloadSection
   },
   computed: {
     ...mapGetters('upload', [
       'getUploadActive'
+    ]),
+    ...mapGetters('download', [
+      'getDownloadActive'
     ])
   }
 }

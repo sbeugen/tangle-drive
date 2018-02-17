@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>1. Select a File you want to upload to the Tangle.</p>
+    <p>1. Select a file you want to upload to the Tangle.</p>
     <div class="file-input-grp">
       <input class="file-input" type="input" v-model="getFileFromState.name" placeholder="Select a File" disabled="true">
       <input type="file" id="file-selector" @change="setSelectedFile" hidden> <!--This input is needed to open the file picker dialog-->
@@ -8,7 +8,7 @@
       <br>
       <br>
       <template v-if="getFileFromState">
-        <p>2. Upload your File.</p>
+        <p>2. Upload your file.</p>
         <button @click="uploadClickHandler">Upload</button>
       </template>
       <template v-if="getBundleHashFromState">
