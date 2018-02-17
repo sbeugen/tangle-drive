@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <nav-bar class="nav-bar"></nav-bar>
-    <img class="iota-logo" src="@/assets/Iota_logo.png" alt="IOTA Logo">
+    <img class="iota-logo" src="@/assets/tangle_drive_logo.png" alt="IOTA Logo">
     <p>Tangle-Drive can be used to upload files to the Tangle to share them securely.</p>
     <p>You simply select a file and receive a bundle hash which is needed to find and download your uploaded file.</p>
     <br>
