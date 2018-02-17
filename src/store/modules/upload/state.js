@@ -1,3 +1,5 @@
 export default {
-  upload_active: true
+  upload_active: true,
+  file: '',
+  bundleHash: ''
 }

@@ -6,21 +6,32 @@
     <p>You simply select a file and receive a bundle hash which is needed to find and download your uploaded file.</p>
     <br>
     <p>As we are using 0 Value IOTA Transactions your files will be deleted during the next Snapshot.</p>
-    <p>We are already working one a version of Tangle-Drive which allows you to store your files permanently.</p>
+    <p>We are already working on a version of Tangle-Drive which allows you to store your files permanently.</p>
     <br>
     <button-group></button-group>
-    <!-- Hier mit v-if entweder Upload oder Downloadbereich anzeigen -->
+    <br>
+    <br>
+    <upload-section v-show="getUploadActive"></upload-section>
   </div>
 </template>
 
 <script>
 import NavBar from '../NavBar'
 import ButtonGroup from './ButtonGroup'
+import UploadSection from './upload_section/UploadSection'
+
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     NavBar,
-    ButtonGroup
+    ButtonGroup,
+    UploadSection
+  },
+  computed: {
+    ...mapGetters('upload', [
+      'getUploadActive'
+    ])
   }
 }
   

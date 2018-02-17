@@ -53,6 +53,9 @@
     cursor: pointer;
     margin: 0;
   }
+  button:hover {
+    background: royalblue;
+  }
   .upload_active, .download_active {
     background-color: skyblue;
   }
