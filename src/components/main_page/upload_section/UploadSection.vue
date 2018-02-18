@@ -33,7 +33,7 @@
         document.getElementById('file-selector').click()
       },
       setSelectedFile(event) {
-        if (event.target.files) {
+        if (event.target.files.length > 0) {
           this.setFileToState(event.target.files[0])
         }
       },
