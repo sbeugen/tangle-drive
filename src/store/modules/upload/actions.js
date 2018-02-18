@@ -13,7 +13,7 @@ export default {
   },
   uploadFileToTangle: ({ commit }, payload) => {
     return new Promise((resolve, reject) => {
-      convertFiliota.utils.toTrytes(result)eToString(payload)
+      convertFileToString(payload)
         .then((result) => {
           console.log(result)
           console.log(iota.utils.toTrytes(result))
