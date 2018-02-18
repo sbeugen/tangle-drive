@@ -4,12 +4,12 @@
     <div class="file-input-grp">
       <input class="file-input" type="input" v-model="getFileFromState.name" placeholder="Select a File" disabled="true">
       <input type="file" id="file-selector" @change="setSelectedFile" hidden> <!--This input is needed to open the file picker dialog-->
-      <button @click="openFilePicker">File</button>
+      <button @click="openFilePicker" :disabled="disabled">File</button>
       <br>
       <br>
       <template v-if="getFileFromState">
         <p>2. Upload your file.</p>
-        <button @click="uploadClickHandler">Upload</button>
+        <button @click="uploadClickHandler" :disabled="disabled">Upload</button>
       </template>
       <template v-if="getBundleHashFromState">
         <p>3. This is your bundle hash. Share it with people you want to download your file.</p>
@@ -25,6 +25,7 @@
   export default {
     data() {
       return {
+        disabled: false
       }
     },
     methods: {
@@ -37,11 +38,14 @@
         }
       },
       uploadClickHandler() {
+        this.disabled = true //muss nach erfolgreichem Upload wieder auf false gesetzt werden
+        this.uploadFileToTangle(this.getFileFromState)
         //Hier nur eine Action aufrufen in der die ganz Update-Logik ausgeführt wird. Die Action darf dann asynchron sein.
         //Wenn upload abgeschlossen ist setzt man den bundle hash im state und aktiviert somit den letzten Bereich, in dem der bundle hash zu sehen ist.
       },
       ...mapActions('upload', [
-        'setFileToState'
+        'setFileToState',
+        'uploadFileToTangle'
       ])
     },
     computed: {
@@ -77,5 +81,8 @@
   .bundle-hash {
     width: 500px;
     padding: 9px 0px;
+  }
+  butten:disabled, button[disabled] {
+    background: lightblue;
   }
 </style>
