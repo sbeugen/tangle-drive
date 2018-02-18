@@ -12,11 +12,14 @@ export default {
     commit('SET_FILE_TO_STATE', payload)
   },
   uploadFileToTangle: ({ commit }, payload) => {
+    const fileName = payload.name
+    const fileType = payload.type
+    console.log(payload)
     return new Promise((resolve, reject) => {
-      convertFileToString(payload)
+      convertFileToDigitString(payload)
         .then((result) => {
-          console.log(result)
-          console.log(iota.utils.toTrytes(result))
+          let tryteMessage = iota.utils.toTrytes(result)
+          console.log('Number of Transactions', tryteMessage.length/2187)
         })
         .catch((error) => {
           console.log(error)
@@ -29,15 +32,21 @@ export default {
   }
 }
 
-const convertFileToString = (file) => {
+const convertFileToDigitString = (file) => {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader()
     fileReader.onload = (event) => {
-      resolve(event.target.result)
+      const dataView = new DataView(event.target.result, 0)
+      let digitString = ""
+
+      for (let offset = 0; offset < dataView.byteLength; offset+=1) {
+        digitString = digitString + dataView.getUint8(offset)
+      }
+      resolve(digitString)
     }
     fileReader.onerror = (event) => {
       reject(event)
     }
-    fileReader.readAsText(file)
+    fileReader.readAsArrayBuffer(file)
   })
 }
