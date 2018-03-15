@@ -5,12 +5,14 @@
   "author": "silvio io <silvio@silvio.io>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --open",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@iota-pico/pow-js": "^0.6.1",
+    "curl.lib.js": "^1.0.22",
     "iota.lib.js": "^0.4.7",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

@@ -1,8 +1,9 @@
-import IOTA from 'iota.lib.js' 
-
-const iota = new IOTA({
-  'provider': 'http://iotanode.party:14265'
-})
+import iota, {
+  MESSAGE_LENGTH,
+  SEED,
+  MWM,
+  DEPTH
+} from '@/plugins/iota'
 
 export default {
   toggleUploadActive: ({ commit }) => {
@@ -14,20 +15,25 @@ export default {
   uploadFileToTangle: ({ commit }, payload) => {
     const fileName = payload.name
     const fileType = payload.type
-    console.log(payload)
-    return new Promise((resolve, reject) => {
-      convertFileToDigitString(payload)
-        .then((result) => {
-          let tryteMessage = iota.utils.toTrytes(result)
-          console.log('Number of Transactions', tryteMessage.length/2187)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
 
-      // 2. convert to Trytes
-      // 3. Create Bundle
-      // 4. Make transaction
+    return new Promise(async (resolve, reject) => {
+      try {
+        let digitString = await convertFileToDigitString(payload)
+        let tryteMessage = iota.utils.toTrytes(digitString)
+        let messageArray = createMessageArray(tryteMessage)
+        let address = await getNewIOTAddress()
+        let transfers = createTransfers(messageArray, address)
+        console.log(transfers)
+        iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, success) => {
+          if (error) {
+            console.log(error)
+          } else {
+            console.log('final success', success)
+          }
+        })
+      } catch (e) {
+        console.log(e)
+      }
     })
   }
 }
@@ -39,7 +45,7 @@ const convertFileToDigitString = (file) => {
       const dataView = new DataView(event.target.result, 0)
       let digitString = ""
 
-      for (let offset = 0; offset < dataView.byteLength; offset+=1) {
+      for (let offset = 0; offset < dataView.byteLength; offset += 1) {
         digitString = digitString + dataView.getUint8(offset)
       }
       resolve(digitString)
@@ -49,4 +55,41 @@ const convertFileToDigitString = (file) => {
     }
     fileReader.readAsArrayBuffer(file)
   })
+}
+
+const createMessageArray = (tryteMessage) => {
+  let messageArray = []
+  let numberOfMessages = Math.floor(tryteMessage.length / MESSAGE_LENGTH)
+  for (let i = 0; i < numberOfMessages; i++) {
+    messageArray.push(tryteMessage.slice(i * MESSAGE_LENGTH, (i + 1) * MESSAGE_LENGTH))
+  }
+  let lastMessageSize = tryteMessage.length % MESSAGE_LENGTH
+  if (lastMessageSize > 0) {
+    messageArray.push(tryteMessage.slice(tryteMessage.length - lastMessageSize, tryteMessage.length))
+  }
+  return messageArray
+}
+
+const getNewIOTAddress = () => {
+  return new Promise((resolve, reject) => {
+    iota.api.getNewAddress(SEED, (error, address) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(address)
+      }
+    })
+  })
+}
+
+const createTransfers = (messageArray, address) => {
+  let transfers = []
+  messageArray.map(message => {
+    transfers.push({
+      value: 0,
+      address: address,
+      message: message
+    })
+  })
+  return transfers
 }
