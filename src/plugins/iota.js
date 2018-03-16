@@ -17,10 +17,10 @@ curl.init()
 // })
 
 export const MESSAGE_LENGTH = 2000
-export const SEED = 'YSHKGJSNDZPDMLUSFGOSRVN9AYEJLFCNXLZLGKPVNBGHQWTQYZBSMVPUYLPGJOWYPIMQQVTGQHPHLMEGS'
+export const SEED = 'YSHKGJSNDZPDMLUSFGOSRVN9AYEJLFCNXLZLGKPVNBGHQWTQYZBSMVPUYLPGJOWYPIMQQVTGQHPHLMEGD'
 export const MWM = 14
-export const DEPTH = 3 
-export const MAX_TIMESTAMP_VALUE = (Math.pow(3,27) - 1) / 2
+export const DEPTH = 2 
+const MAX_TIMESTAMP_VALUE = (Math.pow(3,27) - 1) / 2
 
 const localAttachToTangle = function(trunkTransaction, branchTransaction, minWeightMagnitude, trytes, callback) {
   const ccurlHashing = function(trunkTransaction, branchTransaction, minWeightMagnitude, trytes, callback) {
