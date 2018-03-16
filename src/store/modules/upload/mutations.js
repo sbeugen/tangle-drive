@@ -4,5 +4,8 @@ export default {
   },
   SET_FILE_TO_STATE: (state, payload) => {
     state.file = payload
+  },
+  SET_BUNDLE_HASH_TO_STATE: (state, payload) => {
+    state.bundleHash = payload
   }
 }

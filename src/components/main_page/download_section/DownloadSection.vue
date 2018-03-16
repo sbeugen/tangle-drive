@@ -22,7 +22,7 @@
   
 </script>
 
-<style>
+<style scoped>
   button {
     border: 1px solid white;
     background: skyblue;
@@ -34,7 +34,7 @@
     border-color: skyblue;
   }
   .bundle-hash {
-    width: 500px;
-    padding: 9px 0px;
+    width: 750px;
+    padding: 9px 5px;
   }
 </style>

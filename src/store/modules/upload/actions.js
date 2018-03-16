@@ -24,11 +24,12 @@ export default {
         let address = await getNewIOTAddress()
         let transfers = createTransfers(messageArray, address)
         console.log(transfers)
-        iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, success) => {
+        iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
           if (error) {
             console.log(error)
           } else {
-            console.log('final success', success)
+            console.log(result[0].bundle)
+            commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
           }
         })
       } catch (e) {

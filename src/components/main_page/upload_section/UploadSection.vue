@@ -13,7 +13,7 @@
       </template>
       <template v-if="getBundleHashFromState">
         <p>3. This is your bundle hash. Share it with people you want to download your file.</p>
-        <input class="bundle-hash" type="text" v-model="bundleHash" placeholder="Bundle Hash" disabled>
+        <input class="bundle-hash" id="bundleHash" type="text" v-model="getBundleHashFromState" placeholder="Bundle Hash" @click="bundleClickHandler">
       </template>
     </div>
   </div>
@@ -41,7 +41,12 @@
         this.disabled = true //muss nach erfolgreichem Upload wieder auf false gesetzt werden
         this.uploadFileToTangle(this.getFileFromState)
         //Hier nur eine Action aufrufen in der die ganz Update-Logik ausgeführt wird. Die Action darf dann asynchron sein.
-        //Wenn upload abgeschlossen ist setzt man den bundle hash im state und aktiviert somit den letzten Bereich, in dem der bundle hash zu sehen ist.
+        //Wenn upload abgeschlossen ist setzt man den bundle hash im state und aktiviert somit den letzte aufrufen in  aufrufen in n Bereich, in dem der bundle hash zu sehen ist.
+      },
+      bundleClickHandler() {
+        let bundleInput = document.getElementById("bundleHash")
+        bundleInput.select()
+        document.execCommand('copy')
       },
       ...mapActions('upload', [
         'setFileToState',
@@ -63,7 +68,7 @@
 <style>
   .file-input {
     width: 400px;
-    padding: 9px 0px;
+    padding: 9px 5px;
   }
   .file-input-grp {
     display: inline;
@@ -79,8 +84,9 @@
     border-color: skyblue;
   }
   .bundle-hash {
-    width: 500px;
-    padding: 9px 0px;
+    width: 750px;
+    padding: 9px 5px;
+    background-color: white;
   }
   butten:disabled, button[disabled] {
     background: lightblue;
