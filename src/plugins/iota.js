@@ -2,12 +2,11 @@ import IOTA from 'iota.lib.js'
 import curl from 'curl.lib.js'
 
 const iota = new IOTA({
-  'provider': 'http://node.lukaseder.de:14265'
+  'provider': 'https://nodes.thetangle.org:443'
 })
 
 curl.init()
 // curl.overrideAttachToTangle(iota.api)
-iota.api.attachToTangle = localAttachToTangle
 
 // iota.api.getNodeInfo((error, success) => {
 //   if (error) {
@@ -21,6 +20,7 @@ export const MESSAGE_LENGTH = 2000
 export const SEED = 'YSHKGJSNDZPDMLUSFGOSRVN9AYEJLFCNXLZLGKPVNBGHQWTQYZBSMVPUYLPGJOWYPIMQQVTGQHPHLMEGS'
 export const MWM = 14
 export const DEPTH = 3 
+export const MAX_TIMESTAMP_VALUE = (Math.pow(3,27) - 1) / 2
 
 const localAttachToTangle = function(trunkTransaction, branchTransaction, minWeightMagnitude, trytes, callback) {
   const ccurlHashing = function(trunkTransaction, branchTransaction, minWeightMagnitude, trytes, callback) {
@@ -121,6 +121,8 @@ const localAttachToTangle = function(trunkTransaction, branchTransaction, minWei
       }
   })
 }
+
+iota.api.attachToTangle = localAttachToTangle
 
 export default iota
 
