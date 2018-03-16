@@ -23,6 +23,11 @@ export default {
         let messageArray = createMessageArray(tryteMessage)
         let address = await getNewIOTAddress()
         let transfers = createTransfers(messageArray, address)
+        transfers.push({
+          value: 0,
+          address: address,
+          message: iota.utils.toTrytes(fileName)
+        })
         console.log(transfers)
         iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
           if (error) {

@@ -16,7 +16,7 @@ curl.init()
 //   }
 // })
 
-export const MESSAGE_LENGTH = 2000
+export const MESSAGE_LENGTH = 2187
 export const SEED = 'YSHKGJSNDZPDMLUSFGOSRVN9AYEJLFCNXLZLGKPVNBGHQWTQYZBSMVPUYLPGJOWYPIMQQVTGQHPHLMEGD'
 export const MWM = 14
 export const DEPTH = 2 
