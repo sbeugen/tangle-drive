@@ -28,12 +28,11 @@ export default {
           address: address,
           message: iota.utils.toTrytes(fileName)
         })
-        console.log(transfers)
+        console.log('Sending Transfer')
         iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
           if (error) {
             console.log(error)
           } else {
-            console.log(result[0].bundle)
             commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
           }
         })
@@ -49,10 +48,17 @@ const convertFileToDigitString = (file) => {
     const fileReader = new FileReader()
     fileReader.onload = (event) => {
       const dataView = new DataView(event.target.result, 0)
-      let digitString = ""
-
+      let digitString = ''
+      let tempDigit = ''
       for (let offset = 0; offset < dataView.byteLength; offset += 1) {
-        digitString = digitString + dataView.getUint8(offset)
+        tempDigit = String(dataView.getUint8(offset))
+        if (tempDigit.length === 1) {
+          tempDigit = '00' + tempDigit
+        }
+        if (tempDigit.length === 2) {
+          tempDigit = '0' + tempDigit
+        }
+        digitString = digitString + tempDigit
       }
       resolve(digitString)
     }
