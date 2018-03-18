@@ -1,3 +1,5 @@
 export default {
-  download_active: false
+  download_active: false,
+  fileURL: '',
+  fileName: ''
 }

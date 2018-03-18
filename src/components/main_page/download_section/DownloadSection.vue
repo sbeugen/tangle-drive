@@ -6,77 +6,54 @@
     <br>
     <template v-if="bundleHash">
       <p>2. Download the file.</p>
-      <button @click="downloadClickHandler">Download</button>
+      <button @click="downloadClickHandler" :disabled="disabled">Download</button>
     </template>
   </div>
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'; 
   import iota from '@/plugins/iota' 
 
   export default {
     data() {
       return {
-        bundleHash: ''
+        bundleHash: '',
+        disabled: false
       }
     },
     methods: {
-      downloadClickHandler() {
-        iota.api.findTransactionObjects({bundles: [this.bundleHash]}, (error, success) => {
-          if (error) {
-            console.log(error)
-          } else {
-            let messageArray = []
-            success.map(element => {
-              let index = element.currentIndex
-              messageArray[index] = element.signatureMessageFragment
-              while (messageArray[index].slice(-1) === '9') {
-                messageArray[index] = messageArray[index].slice(0,-1)
-              }
-            })
-            let fileName = iota.utils.fromTrytes(messageArray[messageArray.length -1])
-            console.log(fileName)
-            
-            let digitString = ''
-            for (let index = 0; index < messageArray.length-1; index++) {
-              digitString = digitString + iota.utils.fromTrytes(messageArray[index])
-            }
-            console.log(digitString)
-            let buffer = new ArrayBuffer(digitString.length / 3)
-            let dataView = new DataView(buffer)
-            let dvOffset = 0
-            let array = new Array(digitString.length / 3)
+      async downloadClickHandler() {
+        if (this.bundleHash.length != 81) {
+          alert('The Bundle Hash has to be exactly 81 characters long!')
+        } else {
+          try {
+            this.disabled = true
 
-            for (let i = 0; i < digitString.length / 3; i++) {
-              array[i] = Number(digitString.slice(dvOffset, dvOffset + 3))
-              dvOffset = dvOffset + 3
-            }
-            var byteArray = new Uint8Array(array);
-            console.log('byteArray', byteArray)
-            let blob = new Blob([byteArray], {type: 'application/octet-stream'})
-            console.log('Blob', blob)
+            await this.prepareDownload(this.bundleHash)
 
-            var blobUrl = URL.createObjectURL(blob);
-
-            var a = document.createElement("a");
-            document.body.appendChild(a);
-            a.style = "display: none";
-            a.href = blobUrl;
-            a.download = fileName;
-            a.click();
-            window.URL.revokeObjectURL(blobUrl);
-
-
-            //window.location = blobUrl;
-
-            // for (let offset = 0; offset < digitString.length / 3; offset += 1) {
-            //   dataView.setUint8(offset, Number(digitString.slice(dvOffset, dvOffset + 3)))
-            //   dvOffset = dvOffset + 3
-            // }
-            //console.log(dataView)
+            let a = document.createElement('a')
+            document.body.appendChild(a)
+            a.style = "display: none"
+            a.href = this.getFileURL
+            a.download = this.getFileName
+            a.click()
+            window.URL.revokeObjectURL(this.getFileURL)
+          } catch(error) {
+            alert(error)
           }
-        })
-      }
+          this.disabled = false
+        }
+      },
+      ...mapActions('download', [
+        'prepareDownload'
+      ])
+    },
+    computed: {
+      ...mapGetters('download', [
+        'getFileURL',
+        'getFileName'
+      ])
     }
   }
   

@@ -9,7 +9,7 @@
       <br>
       <template v-if="getFileFromState">
         <p>2. Upload your file.</p>
-        <button @click="uploadClickHandler" :disabled="disabled">Upload</button>
+        <button @click="uploadClickHandler" :disabled="uploadDisabled">Upload</button>
       </template>
       <template v-if="getBundleHashFromState">
         <p>3. This is your bundle hash. Share it with people you want to download your file.</p>
@@ -25,7 +25,8 @@
   export default {
     data() {
       return {
-        disabled: false
+        disabled: false,
+        uploadDisabled: true
       }
     },
     methods: {
@@ -35,13 +36,19 @@
       setSelectedFile(event) {
         if (event.target.files.length > 0) {
           this.setFileToState(event.target.files[0])
+          this.resetBundleHash()
+          this.uploadDisabled = false
         }
       },
-      uploadClickHandler() {
-        this.disabled = true //muss nach erfolgreichem Upload wieder auf false gesetzt werden
-        this.uploadFileToTangle(this.getFileFromState)
-        //Hier nur eine Action aufrufen in der die ganz Update-Logik ausgeführt wird. Die Action darf dann asynchron sein.
-        //Wenn upload abgeschlossen ist setzt man den bundle hash im state und aktiviert somit den letzte aufrufen in  aufrufen in n Bereich, in dem der bundle hash zu sehen ist.
+      async uploadClickHandler() {
+        try {
+          this.disabled = true
+          this.uploadDisabled = true
+          await this.uploadFileToTangle(this.getFileFromState)
+        } catch(error) {
+          alert(error)
+        }
+        this.disabled = false
       },
       bundleClickHandler() {
         let bundleInput = document.getElementById("bundleHash")
@@ -50,7 +57,8 @@
       },
       ...mapActions('upload', [
         'setFileToState',
-        'uploadFileToTangle'
+        'uploadFileToTangle',
+        'resetBundleHash'
       ])
     },
     computed: {

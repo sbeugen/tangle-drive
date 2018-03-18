@@ -31,15 +31,19 @@ export default {
         console.log('Sending Transfer')
         iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
           if (error) {
-            console.log(error)
+            reject(error)
           } else {
             commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
+            resolve()
           }
         })
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        reject(error)
       }
     })
+  },
+  resetBundleHash: ({ commit }) => {
+    commit('SET_BUNDLE_HASH_TO_STATE', '')
   }
 }
 
