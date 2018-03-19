@@ -70,10 +70,14 @@
         'getFileFromState',
         'getBundleHashFromState'
       ])
-    },
+    }, 
     beforeMount() {
       this.setUploadActive(true)
       this.setDownloadActive(false)
+
+      if (this.getBundleHashFromState) {
+        this.uploadDisabled = true
+      }
     },
     beforeDestroy() {
       // this.setFileToState('')
