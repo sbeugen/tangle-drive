@@ -51,6 +51,7 @@ const localAttachToTangle = function(trunkTransaction, branchTransaction, minWei
                   return callback(error);
               } else {
                   i++;
+                  console.log(`${i} of ${trytes.length} finished.`)
                   if (i < trytes.length) {
                       loopTrytes();
                   } else {

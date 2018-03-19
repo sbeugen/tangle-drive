@@ -15,20 +15,20 @@ export default {
   uploadFileToTangle: ({ commit }, payload) => {
     const fileName = payload.name
     const fileType = payload.type
-
+    console.log('Starting upload preparation.')
     return new Promise(async (resolve, reject) => {
       try {
         let digitString = await convertFileToDigitString(payload)
         let tryteMessage = iota.utils.toTrytes(digitString)
         let messageArray = createMessageArray(tryteMessage)
-        let address = await getNewIOTAddress()
+        let address = await getNewIOTAAddress()
         let transfers = createTransfers(messageArray, address)
         transfers.push({
           value: 0,
           address: address,
           message: iota.utils.toTrytes(fileName)
         })
-        console.log('Sending Transfer')
+        console.log('Sending Transfer.')
         iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
           if (error) {
             reject(error)
@@ -86,7 +86,7 @@ const createMessageArray = (tryteMessage) => {
   return messageArray
 }
 
-const getNewIOTAddress = () => {
+const getNewIOTAAddress = () => {
   return new Promise((resolve, reject) => {
     iota.api.getNewAddress(SEED, (error, address) => {
       if (error) {
