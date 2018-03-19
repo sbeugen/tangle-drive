@@ -4,6 +4,9 @@ export default {
   toggleDownloadActive: ({ commit }) => {
     commit('TOGGLE_DOWNLOAD_ACTIVE')
   },
+  setDownloadActive: ({ commit }, payload) => {
+    commit('SET_DOWNLOAD_ACTIVE', payload)
+  },
   prepareDownload: ({ commit }, payload) => {
     return new Promise((resolve, reject) => {
       iota.api.findTransactionObjects({bundles: [payload]}, (error, success) => {

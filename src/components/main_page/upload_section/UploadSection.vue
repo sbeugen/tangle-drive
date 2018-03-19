@@ -26,7 +26,7 @@
     data() {
       return {
         disabled: false,
-        uploadDisabled: true
+        uploadDisabled: false
       }
     },
     methods: {
@@ -58,7 +58,11 @@
       ...mapActions('upload', [
         'setFileToState',
         'uploadFileToTangle',
-        'resetBundleHash'
+        'resetBundleHash',
+        'setUploadActive'
+      ]),
+      ...mapActions('download', [
+        'setDownloadActive'
       ])
     },
     computed: {
@@ -67,8 +71,12 @@
         'getBundleHashFromState'
       ])
     },
+    beforeMount() {
+      this.setUploadActive(true)
+      this.setDownloadActive(false)
+    },
     beforeDestroy() {
-      this.setFileToState('')
+      // this.setFileToState('')
     }
   }
 </script>

@@ -1,12 +1,18 @@
 <template>
   <ul>
-    <li>About</li>
+    <li @click="aboutClickHandler">About</li>
     <li>GitHub</li>
   </ul>
 </template>
 
 <script>
-  
+  export default {
+    methods: {
+      aboutClickHandler() {
+        this.$router.push('about')
+      }
+    }
+  }
 </script>
 
 <style scoped>
@@ -16,5 +22,8 @@
     float: right;
     margin: 15px 10px;
     font-size: 20px;
+  }
+  li {
+    cursor: pointer;
   }
 </style>

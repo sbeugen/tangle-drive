@@ -13,11 +13,13 @@
       handleUploadButton() {
         if (this.getUploadActive != true) {
           this.toggleButtonStates()
+          this.$router.push('upload')
         }
       },
       handleDownloadButton() {
         if (this.getDownloadActive != true) {
           this.toggleButtonStates()
+          this.$router.push('download')
         }
       },
       toggleButtonStates() {

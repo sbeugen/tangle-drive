@@ -11,33 +11,20 @@
     <button-group></button-group>
     <br>
     <br>
-    <upload-section v-show="getUploadActive"></upload-section>
-    <download-section v-show="getDownloadActive"></download-section>
+    <router-view></router-view>
+    <!-- <upload-section v-show="getUploadActive"></upload-section>
+    <download-section v-show="getDownloadActive"></download-section> -->
   </div>
 </template>
 
 <script>
 import NavBar from '../NavBar'
 import ButtonGroup from './ButtonGroup'
-import UploadSection from './upload_section/UploadSection'
-import DownloadSection from './download_section/DownloadSection'
-
-import { mapGetters } from 'vuex'
 
 export default {
   components: {
     NavBar,
-    ButtonGroup,
-    UploadSection,
-    DownloadSection
-  },
-  computed: {
-    ...mapGetters('upload', [
-      'getUploadActive'
-    ]),
-    ...mapGetters('download', [
-      'getDownloadActive'
-    ])
+    ButtonGroup
   }
 }
   

@@ -46,7 +46,11 @@
         }
       },
       ...mapActions('download', [
-        'prepareDownload'
+        'prepareDownload',
+        'setDownloadActive'
+      ]),
+      ...mapActions('upload', [
+        'setUploadActive'
       ])
     },
     computed: {
@@ -54,6 +58,10 @@
         'getFileURL',
         'getFileName'
       ])
+    },
+    beforeMount() {
+      this.setDownloadActive(true)
+      this.setUploadActive(false)
     }
   }
   
