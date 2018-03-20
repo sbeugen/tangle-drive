@@ -26,4 +26,7 @@
   li {
     cursor: pointer;
   }
+  li:hover {
+    color: lightgrey;
+  }
 </style>
