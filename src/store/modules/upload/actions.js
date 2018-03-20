@@ -1,6 +1,5 @@
 import iota, {
   MESSAGE_LENGTH,
-  SEED,
   MWM,
   DEPTH
 } from '@/plugins/iota'
@@ -21,10 +20,11 @@ export default {
     console.log('Starting upload preparation.')
     return new Promise(async (resolve, reject) => {
       try {
+        const SEED = generateSeed()
         let digitString = await convertFileToDigitString(payload)
         let tryteMessage = iota.utils.toTrytes(digitString)
         let messageArray = createMessageArray(tryteMessage)
-        let address = await getNewIOTAAddress()
+        let address = await getNewIOTAAddress(SEED)
         let transfers = createTransfers(messageArray, address)
         transfers.push({
           value: 0,
@@ -48,6 +48,16 @@ export default {
   resetBundleHash: ({ commit }) => {
     commit('SET_BUNDLE_HASH_TO_STATE', '')
   }
+}
+
+const generateSeed = () => {
+  let trytes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'
+  let seed = ''
+
+  for (let i = 1; i <= 81; i++){
+    seed = seed + trytes.charAt(Math.floor(Math.random()*trytes.length))
+  }
+  return seed
 }
 
 const convertFileToDigitString = (file) => {
@@ -89,9 +99,9 @@ const createMessageArray = (tryteMessage) => {
   return messageArray
 }
 
-const getNewIOTAAddress = () => {
+const getNewIOTAAddress = (seed) => {
   return new Promise((resolve, reject) => {
-    iota.api.getNewAddress(SEED, (error, address) => {
+    iota.api.getNewAddress(seed, (error, address) => {
       if (error) {
         reject(error)
       } else {
