@@ -1,18 +1,14 @@
 <template>
   <ul>
-    <li @click="aboutClickHandler">About</li>
-    <li @click="gitHubClickHandler">GitHub</li>
+    <li @click="backClickHandler">Back</li>
   </ul>
 </template>
 
 <script>
   export default {
     methods: {
-      aboutClickHandler() {
-        this.$router.push('about')
-      },
-      gitHubClickHandler() {
-        
+      backClickHandler() {
+        this.$router.push('/')
       }
     }
   }
