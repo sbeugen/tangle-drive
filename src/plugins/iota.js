@@ -2,19 +2,10 @@ import IOTA from 'iota.lib.js'
 import curl from 'curl.lib.js'
 
 const iota = new IOTA({
-  'provider': 'https://nodes.thetangle.org:443'
+  'provider': 'http://node05.iotatoken.nl:16265'
 })
 
 curl.init()
-// curl.overrideAttachToTangle(iota.api)
-
-// iota.api.getNodeInfo((error, success) => {
-//   if (error) {
-//     console.log(error)
-//   } else {
-//     console.log(success)
-//   }
-// })
 
 export const MESSAGE_LENGTH = 2186
 // export const SEED = 'YSHKGJSNDZPDMLUSFGOSRVN9AYEJLFCNXLZLGKPVNBGHQWTQYZBSMVPUYLPGJOWYPIMQQVTGQHPHLMEGD'

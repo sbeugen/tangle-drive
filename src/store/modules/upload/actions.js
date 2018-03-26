@@ -4,6 +4,8 @@ import iota, {
   DEPTH
 } from '@/plugins/iota'
 
+import IPFS from 'ipfs'
+
 export default {
   toggleUploadActive: ({ commit }) => {
     commit('TOGGLE_UPLOAD_ACTIVE')
@@ -21,25 +23,74 @@ export default {
     return new Promise(async (resolve, reject) => {
       try {
         const SEED = generateSeed()
-        let digitString = await convertFileToDigitString(payload)
-        let tryteMessage = iota.utils.toTrytes(digitString)
-        let messageArray = createMessageArray(tryteMessage)
-        let address = await getNewIOTAAddress(SEED)
-        let transfers = createTransfers(messageArray, address)
-        transfers.push({
-          value: 0,
-          address: address,
-          message: iota.utils.toTrytes(fileName)
-        })
-        console.log('Sending Transfer.')
-        iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
-          if (error) {
-            reject(error)
-          } else {
-            commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
-            resolve()
-          }
-        })
+        console.log(payload)
+
+        let reader = new FileReader()
+
+        reader.onload = () => {
+          var fileBuffer = reader.result
+          console.log(fileBuffer)
+          const ipfs = new IPFS()
+
+          let buffer = Buffer.from(fileBuffer)
+          console.log(buffer)
+
+          ipfs.on('ready', () => {
+            // Your ipfs is now ready to use \o/
+            ipfs.files.add(buffer, async (err, res) => {
+              if (err) {
+                console.log('error', err)
+              } else {
+                console.log('result', res)
+                console.log(res[0].hash)  
+                
+                let tryteMessage = iota.utils.toTrytes(res[0].hash)
+                let messageArray = []
+                messageArray.push(tryteMessage)
+                messageArray.push(iota.utils.toTrytes(fileName))
+                let address = await getNewIOTAAddress(SEED)
+                let transfers = createTransfers(messageArray, address)
+                
+                console.log('Sending Transfer.')
+                iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
+                  if (error) {
+                    reject(error)
+                  } else {
+                    commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
+                    resolve()
+                  }
+                })
+
+                //stopping a ipfs
+                ipfs.stop(() => {
+                  // node is now 'offline'
+                })
+              }
+            })
+          })
+        }
+
+        reader.readAsArrayBuffer(payload)
+
+    //     let digitString = await convertFileToDigitString(payload)
+    //     let tryteMessage = iota.utils.toTrytes(digitString)
+    //     let messageArray = createMessageArray(tryteMessage)
+    //     let address = await getNewIOTAAddress(SEED)
+    //     let transfers = createTransfers(messageArray, address)
+    //     transfers.push({
+    //       value: 0,
+    //       address: address,
+    //       message: iota.utils.toTrytes(fileName)
+    //     })
+    //     console.log('Sending Transfer.')
+    //     iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
+    //       if (error) {
+    //         reject(error)
+    //       } else {
+    //         commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
+    //         resolve()
+    //       }
+    //     })
       } catch (error) {
         reject(error)
       }
@@ -58,45 +109,6 @@ const generateSeed = () => {
     seed = seed + trytes.charAt(Math.floor(Math.random()*trytes.length))
   }
   return seed
-}
-
-const convertFileToDigitString = (file) => {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader()
-    fileReader.onload = (event) => {
-      const dataView = new DataView(event.target.result, 0)
-      let digitString = ''
-      let tempDigit = ''
-      for (let offset = 0; offset < dataView.byteLength; offset += 1) {
-        tempDigit = String(dataView.getUint8(offset))
-        if (tempDigit.length === 1) {
-          tempDigit = '00' + tempDigit
-        }
-        if (tempDigit.length === 2) {
-          tempDigit = '0' + tempDigit
-        }
-        digitString = digitString + tempDigit
-      }
-      resolve(digitString)
-    }
-    fileReader.onerror = (event) => {
-      reject(event)
-    }
-    fileReader.readAsArrayBuffer(file)
-  })
-}
-
-const createMessageArray = (tryteMessage) => {
-  let messageArray = []
-  let numberOfMessages = Math.floor(tryteMessage.length / MESSAGE_LENGTH)
-  for (let i = 0; i < numberOfMessages; i++) {
-    messageArray.push(tryteMessage.slice(i * MESSAGE_LENGTH, (i + 1) * MESSAGE_LENGTH))
-  }
-  let lastMessageSize = tryteMessage.length % MESSAGE_LENGTH
-  if (lastMessageSize > 0) {
-    messageArray.push(tryteMessage.slice(tryteMessage.length - lastMessageSize, tryteMessage.length))
-  }
-  return messageArray
 }
 
 const getNewIOTAAddress = (seed) => {
