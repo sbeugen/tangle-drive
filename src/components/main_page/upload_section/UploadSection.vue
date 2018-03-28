@@ -78,9 +78,6 @@
       if (this.getBundleHashFromState) {
         this.uploadDisabled = true
       }
-    },
-    beforeDestroy() {
-      // this.setFileToState('')
     }
   }
 </script>

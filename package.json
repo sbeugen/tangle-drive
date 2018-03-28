@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@iota-pico/pow-js": "^0.6.1",
+    "axios": "^0.18.0",
     "buffer": "^5.1.0",
     "cids": "^0.5.3",
     "curl.lib.js": "^1.0.22",
@@ -20,6 +21,7 @@
     "ipfs": "^0.28.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vue-spinner": "^1.0.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

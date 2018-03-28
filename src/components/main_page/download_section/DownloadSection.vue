@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>1. Simply paste your bundle hash and download the file.</p>
-    <input type="text" class="bundle-hash" v-model="bundleHash" placeholder="Paste your bundle hash">
+    <input type="text" class="bundle-hash" @change="bundleInputChangeHandler" v-model="bundleHash" placeholder="Paste your bundle hash">
     <br>
     <br>
     <template v-if="bundleHash">
@@ -37,13 +37,16 @@
             a.style = "display: none"
             a.href = this.getFileURL
             a.download = this.getFileName
+            console.log(a)
             a.click()
             window.URL.revokeObjectURL(this.getFileURL)
           } catch(error) {
             alert(error)
           }
-          this.disabled = false
         }
+      },
+      bundleInputChangeHandler() {
+        this.disabled = false
       },
       ...mapActions('download', [
         'prepareDownload',

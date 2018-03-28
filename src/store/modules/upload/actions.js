@@ -5,6 +5,7 @@ import iota, {
 } from '@/plugins/iota'
 
 import IPFS from 'ipfs'
+import axios from 'axios'
 
 export default {
   toggleUploadActive: ({ commit }) => {
@@ -20,7 +21,7 @@ export default {
     const fileName = payload.name
     const fileType = payload.type
     console.log('Starting upload preparation.')
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       try {
         const SEED = generateSeed()
         console.log(payload)
@@ -28,42 +29,41 @@ export default {
         let reader = new FileReader()
 
         reader.onload = () => {
-          var fileBuffer = reader.result
-          console.log(fileBuffer)
           const ipfs = new IPFS()
+          console.log(ipfs)
 
-          let buffer = Buffer.from(fileBuffer)
-          console.log(buffer)
+          let buffer = Buffer.from(reader.result)
 
           ipfs.on('ready', () => {
             // Your ipfs is now ready to use \o/
             ipfs.files.add(buffer, async (err, res) => {
               if (err) {
-                console.log('error', err)
+                reject(err)
               } else {
-                console.log('result', res)
-                console.log(res[0].hash)  
-                
-                let tryteMessage = iota.utils.toTrytes(res[0].hash)
-                let messageArray = []
-                messageArray.push(tryteMessage)
-                messageArray.push(iota.utils.toTrytes(fileName))
+                axios.get(`https://ipfs.io/ipfs/${res[0].hash}`)
+                  .then (response => {
+                    console.log('response', response)
+                  })
+                  .catch(error => {
+                    console.log('axios error', error)
+                  })
+
                 let address = await getNewIOTAAddress(SEED)
-                let transfers = createTransfers(messageArray, address)
+                let messageObj = {
+                  content: res[0].hash,
+                  fileName: fileName
+                }
+                let tryteMessage = iota.utils.toTrytes(JSON.stringify(messageObj))
+                let transfer = createTransfer(tryteMessage, address)
                 
                 console.log('Sending Transfer.')
-                iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
+                iota.api.sendTransfer(SEED, DEPTH, MWM, transfer, (error, result) => {
                   if (error) {
                     reject(error)
                   } else {
                     commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
                     resolve()
                   }
-                })
-
-                //stopping a ipfs
-                ipfs.stop(() => {
-                  // node is now 'offline'
                 })
               }
             })
@@ -123,14 +123,12 @@ const getNewIOTAAddress = (seed) => {
   })
 }
 
-const createTransfers = (messageArray, address) => {
-  let transfers = []
-  messageArray.map(message => {
-    transfers.push({
-      value: 0,
-      address: address,
-      message: message
-    })
+const createTransfer = (message, address) => {
+  let transfer = []
+  transfer.push({
+    value: 0,
+    address: address,
+    message: message
   })
-  return transfers
+  return transfer
 }
