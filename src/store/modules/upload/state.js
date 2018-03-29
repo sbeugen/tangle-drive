@@ -1,5 +1,8 @@
 export default {
   upload_active: true,
   file: '',
-  bundleHash: ''
+  bundleHash: '',
+  uploadText: '',
+  fileUploadFinished: true,
+  powFinished: true
 }

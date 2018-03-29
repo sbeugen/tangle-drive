@@ -1,17 +1,31 @@
 <template>
-  <div class="spinner-background">
+  <div class="spinner-background" v-if="showLoader">
     <pulse-spinner></pulse-spinner>
     <br>
-    <h2>Loading...</h2>
+    <h2>{{ getUploadText }}</h2>
   </div>
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex' 
   import PulseSpinner from 'vue-spinner/src/PulseLoader.vue'
   
   export default {
     components: {
       PulseSpinner
+    },
+    methods: {
+      
+    },
+    computed: {
+      showLoader() {
+        return !this.getFileUploadFinished || !this.getPowFinished
+      },
+      ...mapGetters('upload', [
+        'getUploadText',
+        'getFileUploadFinished',
+        'getPowFinished'
+      ])
     }
   }
 </script>

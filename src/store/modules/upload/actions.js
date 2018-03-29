@@ -17,32 +17,32 @@ export default {
   setFileToState: ({ commit }, payload) => {
     commit('SET_FILE_TO_STATE', payload)
   },
-  uploadFileToTangle: ({ commit }, payload) => {
-    const fileName = payload.name
-    const fileType = payload.type
-    console.log('Starting upload preparation.')
+  uploadFileToTangle: ({ commit, dispatch }, payload) => {
+    const FILE_NAME = payload.name
+
+    dispatch('setFileUploadFinished', false)
+    dispatch('setPowFinished', false)
+    dispatch('setUploadText', 'Preparing upload...')
     return new Promise((resolve, reject) => {
       try {
         const SEED = generateSeed()
-        console.log(payload)
 
         let reader = new FileReader()
 
         reader.onload = () => {
           const ipfs = new IPFS()
-          console.log(ipfs)
 
           let buffer = Buffer.from(reader.result)
 
           ipfs.on('ready', () => {
-            // Your ipfs is now ready to use \o/
+            dispatch('setUploadText', 'Uploading file to ipfs...')
             ipfs.files.add(buffer, async (err, res) => {
               if (err) {
                 reject(err)
               } else {
                 axios.get(`https://ipfs.io/ipfs/${res[0].hash}`)
                   .then (response => {
-                    console.log('response', response)
+                    dispatch('setFileUploadFinished', true)
                   })
                   .catch(error => {
                     console.log('axios error', error)
@@ -51,16 +51,17 @@ export default {
                 let address = await getNewIOTAAddress(SEED)
                 let messageObj = {
                   content: res[0].hash,
-                  fileName: fileName
+                  fileName: FILE_NAME
                 }
                 let tryteMessage = iota.utils.toTrytes(JSON.stringify(messageObj))
                 let transfer = createTransfer(tryteMessage, address)
                 
-                console.log('Sending Transfer.')
+                dispatch('setUploadText', 'Doing POW...')
                 iota.api.sendTransfer(SEED, DEPTH, MWM, transfer, (error, result) => {
                   if (error) {
                     reject(error)
                   } else {
+                    dispatch('setPowFinished', true)
                     commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
                     resolve()
                   }
@@ -71,26 +72,6 @@ export default {
         }
 
         reader.readAsArrayBuffer(payload)
-
-    //     let digitString = await convertFileToDigitString(payload)
-    //     let tryteMessage = iota.utils.toTrytes(digitString)
-    //     let messageArray = createMessageArray(tryteMessage)
-    //     let address = await getNewIOTAAddress(SEED)
-    //     let transfers = createTransfers(messageArray, address)
-    //     transfers.push({
-    //       value: 0,
-    //       address: address,
-    //       message: iota.utils.toTrytes(fileName)
-    //     })
-    //     console.log('Sending Transfer.')
-    //     iota.api.sendTransfer(SEED, DEPTH, MWM, transfers, (error, result) => {
-    //       if (error) {
-    //         reject(error)
-    //       } else {
-    //         commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
-    //         resolve()
-    //       }
-    //     })
       } catch (error) {
         reject(error)
       }
@@ -98,6 +79,15 @@ export default {
   },
   resetBundleHash: ({ commit }) => {
     commit('SET_BUNDLE_HASH_TO_STATE', '')
+  },
+  setUploadText: ({ commit }, payload) => {
+    commit('SET_UPLOAD_TEXT_TO_STATE', payload)
+  },
+  setFileUploadFinished: ({ commit }, payload) => {
+    commit('SET_FILE_UPLOAD_FINISHED', payload)
+  },
+  setPowFinished: ({ commit }, payload) => {
+    commit('SET_POW_FINISHED', payload)
   }
 }
 

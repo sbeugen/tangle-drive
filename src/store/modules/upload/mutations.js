@@ -10,5 +10,14 @@ export default {
   },
   SET_BUNDLE_HASH_TO_STATE: (state, payload) => {
     state.bundleHash = payload
+  },
+  SET_UPLOAD_TEXT_TO_STATE: (state, payload) => {
+    state.uploadText = payload
+  },
+  SET_FILE_UPLOAD_FINISHED: (state, payload) => {
+    state.fileUploadFinished = payload
+  },
+  SET_POW_FINISHED: (state, payload) => {
+    state.powFinished = payload
   }
 }

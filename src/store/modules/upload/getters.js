@@ -7,5 +7,14 @@ export default {
   },
   getBundleHashFromState: state => {
     return state.bundleHash
+  },
+  getUploadText: state => {
+    return state.uploadText
+  },
+  getFileUploadFinished: state => {
+    return state.fileUploadFinished
+  },
+  getPowFinished: state => {
+    return state.powFinished
   }
 }
