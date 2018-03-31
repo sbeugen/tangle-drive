@@ -45,7 +45,8 @@ export default {
                     dispatch('setFileUploadFinished', true)
                   })
                   .catch(error => {
-                    console.log('axios error', error)
+                    dispatch('setFileUploadFinished', true)
+                    reject(error)
                   })
 
                 let address = await getNewIOTAAddress(SEED)
@@ -59,6 +60,7 @@ export default {
                 dispatch('setUploadText', 'Doing POW...')
                 iota.api.sendTransfer(SEED, DEPTH, MWM, transfer, (error, result) => {
                   if (error) {
+                    dispatch('setPowFinished', true)
                     reject(error)
                   } else {
                     dispatch('setPowFinished', true)
