@@ -49,16 +49,16 @@
     display: inline;
   }
   button {
-    border: 1px solid white;
-    background: white;
+    border: 1px solid #ffffff;
+    background: #ffffff;
     padding: 10px 24px; 
     cursor: pointer;
     margin: 0;
   }
   button:hover {
-   border-color: skyblue;
+   border-color: #87ceeb;
   }
   .upload_active, .download_active {
-    background-color: skyblue;
+    background-color: #87ceeb;
   }
 </style>

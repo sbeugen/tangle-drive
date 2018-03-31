@@ -14,9 +14,6 @@
     <br>
     <br>
     <router-view></router-view>
-    <div id="ipfsContent" hidden></div>
-    <!-- <upload-section v-show="getUploadActive"></upload-section>
-    <download-section v-show="getDownloadActive"></download-section> -->
   </div>
 </template>
 

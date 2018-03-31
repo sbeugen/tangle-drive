@@ -1,6 +1,6 @@
 <template>
   <div class="spinner-background" v-if="showLoader">
-    <pulse-spinner></pulse-spinner>
+    <pulse-spinner :color="color"></pulse-spinner>
     <br>
     <h2>{{ getUploadText }}</h2>
   </div>
@@ -13,6 +13,11 @@
   export default {
     components: {
       PulseSpinner
+    },
+    data() {
+      return {
+        color: '#87ceeb'
+      }
     },
     methods: {
       
