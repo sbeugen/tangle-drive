@@ -20,11 +20,17 @@
       }
     },
     methods: {
-      
+      ...mapActions('upload', [
+        'setUploadText'
+      ])
     },
     computed: {
       showLoader() {
-        return !this.getFileUploadFinished || !this.getPowFinished
+        let loading = !this.getFileUploadFinished || !this.getPowFinished
+        if (!loading) {
+          this.setUploadText('')
+        }
+        return loading
       },
       ...mapGetters('upload', [
         'getUploadText',

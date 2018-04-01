@@ -17,7 +17,7 @@ export default {
   setFileToState: ({ commit }, payload) => {
     commit('SET_FILE_TO_STATE', payload)
   },
-  uploadFileToTangle: ({ commit, dispatch }, payload) => {
+  uploadFileToTangle: ({ commit, dispatch, state }, payload) => {
     const FILE_NAME = payload.name
 
     dispatch('setFileUploadFinished', false)
@@ -51,7 +51,7 @@ export default {
 
                 let address = await getNewIOTAAddress(SEED)
                 let messageObj = {
-                  content: res[0].hash,
+                  content: res[0].hash,setUploadText,
                   fileName: FILE_NAME
                 }
                 let tryteMessage = iota.utils.toTrytes(JSON.stringify(messageObj))
@@ -64,6 +64,9 @@ export default {
                     reject(error)
                   } else {
                     dispatch('setPowFinished', true)
+                    if (state.fileUploadFinished === false) {
+                      dispatch('setUploadText', 'Uploading file to ipfs...')
+                    }
                     commit('SET_BUNDLE_HASH_TO_STATE', result[0].bundle)
                     resolve()
                   }
