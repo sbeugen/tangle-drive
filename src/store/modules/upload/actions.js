@@ -51,7 +51,7 @@ export default {
 
                 let address = await getNewIOTAAddress(SEED)
                 let messageObj = {
-                  content: res[0].hash,setUploadText,
+                  content: res[0].hash,
                   fileName: FILE_NAME
                 }
                 let tryteMessage = iota.utils.toTrytes(JSON.stringify(messageObj))
