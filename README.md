@@ -1,6 +1,6 @@
 # tangle-drive
 
-> Tangle Drive (Store Data Forever)
+> Tangle Drive (Share your files using the web3.0)
 
 ## Build Setup
 
