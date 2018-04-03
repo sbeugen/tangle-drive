@@ -26,7 +26,8 @@
     data() {
       return {
         disabled: false,
-        uploadDisabled: false
+        uploadDisabled: false,
+        MAX_FILE_SIZE: 105000000
       }
     },
     methods: {
@@ -35,9 +36,13 @@
       },
       setSelectedFile(event) {
         if (event.target.files.length > 0) {
-          this.setFileToState(event.target.files[0])
-          this.resetBundleHash()
-          this.uploadDisabled = false
+          if (!(event.target.files[0].size > this.MAX_FILE_SIZE)){
+            this.setFileToState(event.target.files[0])
+            this.resetBundleHash()
+            this.uploadDisabled = false
+          } else {
+            alert('The selected file is to big. Currently it is only allowed to upload 100 MB per file.')
+          }
         }
       },
       async uploadClickHandler() {

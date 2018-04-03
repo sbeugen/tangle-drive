@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li @click="aboutClickHandler">About</li>
+    <li @click="aboutClickHandler">AboutMe</li>
     <li @click="gitHubClickHandler">GitHub</li>
   </ul>
 </template>
@@ -12,7 +12,7 @@
         this.$router.push('about')
       },
       gitHubClickHandler() {
-        
+        window.open('https://github.com/sbeugen/tangle-drive', '_blank')
       }
     }
   }
