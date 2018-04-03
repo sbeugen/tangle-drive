@@ -5,7 +5,7 @@
     <img class="iota-logo" src="@/assets/tangle_drive_beta_logo.png" alt="IOTA Logo">
     <p class="made-by">Made by <a class="profile" href="https://github.com/sbeugen" target="_blank" >sbeugen</a></p>
     <p>Tangle-Drive can be used to upload files to the <a href="https://ipfs.io/" target="_blank">IPFS</a> to share them securely.</p>
-    <p>You simply select a file and receive a bundle hash which is needed to find and download your uploaded file.</p>
+    <p>The content hash is stored in the <a href="https://iota.org/" target="_blank">IOTA Tangle</a>. You are able to access it by the bundle hash you receive after the upload.</p>
     <p>The <a href="https://iota.org/" target="_blank">Tangle</a> is an immutable storage. Therefore using this bundlehash, you can be 100% sure, that your file was not edited since the upload.</p>
     <br>
     <p>We are using 0 value <a href="https://iota.org/" target="_blank">IOTA</a> transactions. Thus your files will be deleted during the next Snapshot.</p>
