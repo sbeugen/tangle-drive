@@ -37,7 +37,6 @@
             a.style = "display: none"
             a.href = this.getFileURL
             a.download = this.getFileName
-            console.log(a)
             a.click()
             window.URL.revokeObjectURL(this.getFileURL)
           } catch(error) {

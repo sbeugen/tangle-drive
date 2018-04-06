@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li @click="aboutClickHandler">AboutMe</li>
+    <!-- <li @click="aboutClickHandler">AboutMe</li> -->
     <li @click="gitHubClickHandler">GitHub</li>
   </ul>
 </template>
