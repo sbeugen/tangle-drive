@@ -22,7 +22,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## To Do
 
-- Download all files directly. Curretly Tangle-Drive is redirecting you to ipfs.io/ipfs/[content hash]
+- Download all files directly. Curretly Tangle-Drive is redirecting you to ipfs.io/ipfs/[content hash] <span style="color:green">DONE</span>
 - Fill AboutMe Page with content
 - Set up IPFS node on server
 - Save the content hash permanently in the Tangle. Either by adding a value of 1 IOTA to the transaction or using a permanode
