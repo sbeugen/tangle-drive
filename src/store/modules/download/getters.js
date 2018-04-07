@@ -7,5 +7,11 @@ export default {
   },
   getFileName: state => {
     return state.fileName
+  },
+  getDownloadText: state => {
+    return state.downloadText
+  },
+  getDownloadPreparationFinished: state => {
+    return state.downloadPreparationFinished
   }
 }

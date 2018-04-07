@@ -2,7 +2,7 @@
   <div class="spinner-background" v-if="showLoader">
     <pulse-spinner :color="color"></pulse-spinner>
     <br>
-    <h2>{{ getUploadText }}</h2>
+    <h2>{{ showText }}</h2>
   </div>
 </template>
 
@@ -26,7 +26,7 @@
     },
     computed: {
       showLoader() {
-        let loading = !this.getFileUploadFinished || !this.getPowFinished
+        let loading = !this.getFileUploadFinished || !this.getPowFinished || !this.getDownloadPreparationFinished
         if (!loading) {
           this.setUploadText('')
         }
@@ -36,7 +36,19 @@
         'getUploadText',
         'getFileUploadFinished',
         'getPowFinished'
-      ])
+      ]),
+      ...mapGetters('download', [
+        'getDownloadText',
+        'getDownloadPreparationFinished'
+      ]),
+      showText() {
+        if (this.getUploadText) {
+          return this.getUploadText
+        }
+        if (this.getDownloadText) {
+          return this.getDownloadText
+        }
+      }
     }
   }
 </script>

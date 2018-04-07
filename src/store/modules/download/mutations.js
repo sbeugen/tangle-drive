@@ -10,5 +10,11 @@ export default {
   },
   SET_FILEURL_TO_STATE: (state, payload) => {
     state.fileURL = payload
+  },
+  SET_DOWNLOAD_TEXT: (state, payload) => {
+    state.downloadText = payload
+  },
+  SET_DOWNLOAD_PREPARATION_FINISHED: (state, payload) => {
+    state.downloadPreparationFinished = payload
   }
 }

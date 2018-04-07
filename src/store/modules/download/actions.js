@@ -8,8 +8,10 @@ export default {
   setDownloadActive: ({ commit }, payload) => {
     commit('SET_DOWNLOAD_ACTIVE', payload)
   },
-  prepareDownload: ({ commit }, payload) => {
+  prepareDownload: ({ commit, dispatch }, payload) => {
     return new Promise((resolve, reject) => {
+      dispatch('setDownloadPreparationFinished', false)
+      dispatch('setDownloadText', 'Preparing download...')
       iota.api.findTransactionObjects({bundles: [payload]}, (error, success) => {
         if (error) {
           reject(error)
@@ -28,7 +30,6 @@ export default {
           const ipfs = new IPFS()
 
           ipfs.on('ready', () => {
-            console.log(messageObj.content)
             ipfs.files.get(messageObj.content, (error, response) => {
               if (error) {
                 reject(error)
@@ -36,11 +37,19 @@ export default {
               const blob = new Blob([response[0].content], {type: 'application/octet-stream'})
               const blobURL = URL.createObjectURL(blob)
               commit('SET_FILEURL_TO_STATE', blobURL)
-          resolve()
+              dispatch('setDownloadPreparationFinished', true)
+              dispatch('setDownloadText', '')
+              resolve()
             })
           })
         }
       })
     })
+  },
+  setDownloadText: ({ commit }, payload) => {
+    commit('SET_DOWNLOAD_TEXT', payload)
+  },
+  setDownloadPreparationFinished: ({ commit }, payload) => {
+    commit('SET_DOWNLOAD_PREPARATION_FINISHED', payload)
   }
 }
