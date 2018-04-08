@@ -1,8 +1,10 @@
 <template>
-  <div class="spinner-background" v-if="showLoader">
-    <pulse-spinner :color="color"></pulse-spinner>
-    <br>
-    <h2>{{ showText }}</h2>
+  <div class="screen-background" v-if="showLoader">
+    <div class="spinner-background">
+      <pulse-spinner :color="color"></pulse-spinner>
+      <br>
+      <h2>{{ showText }}</h2>
+    </div>
   </div>
 </template>
 
@@ -54,16 +56,20 @@
 </script>
 
 <style>
-  .spinner-background {
+  .screen-background {
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.7);
-    padding-top: 50px;
     justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10000;
+  }
+  .spinner-background {
+    background: rgba(0,0,0,0.8);
+    margin-top: 300px;
+    padding: 100px;
   }
 
 </style>
