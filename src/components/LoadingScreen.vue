@@ -10,7 +10,7 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex' 
-  import PulseSpinner from 'vue-spinner/src/PulseLoader.vue'
+  import PulseSpinner from './extern/PulseLoader.vue'
   
   export default {
     components: {

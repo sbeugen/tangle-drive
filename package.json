@@ -48,6 +48,8 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.4.3",
+    "jest-serializer-vue": "^1.0.0",
+    "jest-vue": "^0.8.2",
     "jest-vue-preprocessor": "^1.4.0",
     "modify-babel-preset": "^2.0.1",
     "node-notifier": "^5.1.2",
@@ -62,6 +64,7 @@
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue-jest": "^2.4.1",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
@@ -81,16 +84,18 @@
     "not ie <= 8"
   ],
   "jest": {
+    "coverageReporters": ["lcov"],
+    "coverageDirectory": "./coverage",
+    "moduleDirectories": ["node_modules", "<rootDir>/"],
     "moduleNameMapper": {
       "^vue$": "vue/dist/vue.common.js"
     },
-    "moduleFileExtensions": [
-      "js",
-      "vue"
-    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": ["ts", "tsx", "vue", "js", "json", "jsx"],
+    "verbose": true,
     "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+      ".js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue"
     }
   }
 }
