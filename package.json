@@ -84,18 +84,33 @@
     "not ie <= 8"
   ],
   "jest": {
-    "coverageReporters": ["lcov"],
-    "coverageDirectory": "./coverage",
-    "moduleDirectories": ["node_modules", "<rootDir>/"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
     "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
       "^vue$": "vue/dist/vue.common.js"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "vue", "js", "json", "jsx"],
-    "verbose": true,
     "transform": {
-      ".js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue"
-    }
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    },
+    "coverageReporters": ["html", "text"],
+    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"],
+    "coverageDirectory": "<rootDir>/test/coverage",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!src/main.js",
+      "!src/router/index.js",
+      "!**/node_modules/**",
+      "!src/store/modules/**/index.js",
+      "!src/store/index.js",
+      "!src/plugin/**",
+      "!src/eventBus/**"
+    ]
+  
   }
 }

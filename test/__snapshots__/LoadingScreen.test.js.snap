@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingScreen.test.js snapshot has expected html structure 1`] = `
+<div
+  class="screen-background"
+>
+  <div
+    class="spinner-background"
+  >
+    <!---->
+     
+    <br />
+     
+    <h2>
+      Upload Prep.
+    </h2>
+  </div>
+</div>
+`;
