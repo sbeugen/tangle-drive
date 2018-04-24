@@ -1,4 +1,4 @@
-import { shallow, mount, createLocalVue } from '@vue/test-utils'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Vue from 'vue'
 

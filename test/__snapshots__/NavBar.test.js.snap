@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar.test.js has expected html structure 1`] = `
+<ul>
+  <li>
+    GitHub
+  </li>
+</ul>
+`;
