@@ -46,9 +46,10 @@
       showText() {
         if (this.getUploadText) {
           return this.getUploadText
-        }
-        if (this.getDownloadText) {
+        }else if (this.getDownloadText) {
           return this.getDownloadText
+        }else {
+          return ''
         }
       }
     }

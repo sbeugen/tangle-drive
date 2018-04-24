@@ -193,7 +193,7 @@ describe('LoadingScreen.test.js', () => {
       })
     })
 
-    it('returns the download text/ shows the upload text in the h2 tag if the getDownloadText returns a not empty String', (done) => {
+    it('returns the download text/ shows the download text in the h2 tag if the getDownloadText returns a not empty String', (done) => {
       uploadGetters.getUploadText.mockImplementation(() => '')
       downloadGetters.getDownloadText.mockImplementation(() => 'Downloading')
 
@@ -216,6 +216,33 @@ describe('LoadingScreen.test.js', () => {
       Vue.nextTick(() => {
         const h2 = cmp.find('h2')
         expect(h2.text()).toBe('Downloading')
+        done()
+      })
+    })
+
+    it('returns an empty string/ shows an empty string in the h2 tag if the getDownloadText and getUploadText return an empty String', (done) => {
+      uploadGetters.getUploadText.mockImplementation(() => '')
+      downloadGetters.getDownloadText.mockImplementation(() => '')
+
+      store = new Vuex.Store({
+        strict: true,
+        modules: {
+          upload: {
+            namespaced: true,
+            getters: uploadGetters,
+            actions: uploadActions
+          },
+          download: {
+            namespaced: true,
+            getters: downloadGetters
+          }
+        }
+      })
+
+      const cmp = shallow(LoadingScreen, { store, localVue })
+      Vue.nextTick(() => {
+        const h2 = cmp.find('h2')
+        expect(h2.text()).toBe('')
         done()
       })
     })
