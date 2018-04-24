@@ -8,9 +8,9 @@
 <script>
   export default {
     methods: {
-      aboutClickHandler() {
-        this.$router.push('about')
-      },
+      // aboutClickHandler() {
+      //   this.$router.push('about')
+      // },
       gitHubClickHandler() {
         window.open('https://github.com/sbeugen/tangle-drive', '_blank')
       }
