@@ -60,6 +60,16 @@ describe('ButtonGroup.test.js', () => {
     })
   })
 
+  describe('Directly after mount', () => {
+    it('Upload Button is active, Download Button is not', () => {
+      let uploadButton = cmp.findAll('button').at(0)
+      let downloadButton = cmp.findAll('button').at(1)
+  
+      expect(uploadButton.classes()).toContain('active')
+      expect(downloadButton.classes()).not.toContain('active')
+    })
+  })
+
   describe('click on Download Button', () => {
     it('calls handleDownloadButton', () => {
       cmp.vm.handleDownloadButton = jest.fn()
