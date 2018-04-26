@@ -90,7 +90,7 @@ describe('ButtonGroup.test.js', () => {
       expect(downloadActions.toggleDownloadActive).toBeCalled()
     })
     
-    it('Download Button has active class UploadButton has no active class', (done) => {
+    it('Download Button has active class UploadButton has no active class', () => {
       downloadGetters.getDownloadActive.mockImplementation(() => true)
       uploadGetters.getUploadActive.mockImplementation(() => false)
 
@@ -110,17 +110,14 @@ describe('ButtonGroup.test.js', () => {
         }
       })
 
-      Vue.nextTick(() => {
-        cmp = shallow(ButtonGroup, { store, localVue, mocks: {
-          $router
-        }})
-        let uploadButton = cmp.findAll('button').at(0)
-        let downloadButton = cmp.findAll('button').at(1)
+      cmp = shallow(ButtonGroup, { store, localVue, mocks: {
+        $router
+      }})
+      let uploadButton = cmp.findAll('button').at(0)
+      let downloadButton = cmp.findAll('button').at(1)
 
-        expect(uploadButton.classes()).not.toContain('active')
-        expect(downloadButton.classes()).toContain('active')
-        done()
-      })
+      expect(uploadButton.classes()).not.toContain('active')
+      expect(downloadButton.classes()).toContain('active')
     })
   })
   describe('click on Upload Button', () => {
@@ -153,7 +150,7 @@ describe('ButtonGroup.test.js', () => {
       expect(downloadActions.toggleDownloadActive).toBeCalled()
     })
 
-    it('Upload Button has active class UploadButton has no active class', (done) => {
+    it('Upload Button has active class UploadButton has no active class', () => {
       downloadGetters.getDownloadActive.mockImplementation(() => false)
       uploadGetters.getUploadActive.mockImplementation(() => true)
 
@@ -173,17 +170,14 @@ describe('ButtonGroup.test.js', () => {
         }
       })
 
-      Vue.nextTick(() => {
-        cmp = shallow(ButtonGroup, { store, localVue, mocks: {
-          $router
-        }})
-        let uploadButton = cmp.findAll('button').at(0)
-        let downloadButton = cmp.findAll('button').at(1)
+      cmp = shallow(ButtonGroup, { store, localVue, mocks: {
+        $router
+      }})
+      let uploadButton = cmp.findAll('button').at(0)
+      let downloadButton = cmp.findAll('button').at(1)
 
-        expect(uploadButton.classes()).toContain('active')
-        expect(downloadButton.classes()).not.toContain('active')
-        done()
-      })
+      expect(uploadButton.classes()).toContain('active')
+      expect(downloadButton.classes()).not.toContain('active')
     })
   })
 })

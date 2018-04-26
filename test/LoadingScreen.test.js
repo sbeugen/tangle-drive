@@ -52,7 +52,7 @@ describe('LoadingScreen.test.js', () => {
   })
 
   describe('Computed property showLoader', () => {
-    it('returns true (renders the background div) if getFileUploadFinished is false', (done) => {
+    it('returns true (renders the background div) if getFileUploadFinished is false', () => {
       uploadGetters.getFileUploadFinished.mockImplementation(() => false)
       uploadGetters.getPowFinished.mockImplementation(() => true)
       downloadGetters.getDownloadPreparationFinished.mockImplementation(() => true)
@@ -73,14 +73,11 @@ describe('LoadingScreen.test.js', () => {
       })
 
       const cmp = shallow(LoadingScreen, { store, localVue })
-      Vue.nextTick(() => {
-        const backgroundDiv = cmp.find('.screen-background')
-        expect(backgroundDiv.exists()).toBe(true)
-        done()
-      })
+      const backgroundDiv = cmp.find('.screen-background')
+      expect(backgroundDiv.exists()).toBe(true)
     })
 
-    it('returns true (renders the background div) if getPowFinished is false', (done) => {
+    it('returns true (renders the background div) if getPowFinished is false', () => {
       uploadGetters.getFileUploadFinished.mockImplementation(() => true)
       uploadGetters.getPowFinished.mockImplementation(() => false)
       downloadGetters.getDownloadPreparationFinished.mockImplementation(() => true)
@@ -101,14 +98,11 @@ describe('LoadingScreen.test.js', () => {
       })
 
       const cmp = shallow(LoadingScreen, { store, localVue })
-      Vue.nextTick(() => {
-        const backgroundDiv = cmp.find('.screen-background')
-        expect(backgroundDiv.exists()).toBe(true)
-        done()
-      })
+      const backgroundDiv = cmp.find('.screen-background')
+      expect(backgroundDiv.exists()).toBe(true)
     })
 
-    it('returns true (renders the background div) if getDownloadPreparationFinished is false', (done) => {
+    it('returns true (renders the background div) if getDownloadPreparationFinished is false', () => {
       uploadGetters.getFileUploadFinished.mockImplementation(() => true)
       uploadGetters.getPowFinished.mockImplementation(() => true)
       downloadGetters.getDownloadPreparationFinished.mockImplementation(() => false)
@@ -129,14 +123,11 @@ describe('LoadingScreen.test.js', () => {
       })
 
       const cmp = shallow(LoadingScreen, { store, localVue })
-      Vue.nextTick(() => {
-        const backgroundDiv = cmp.find('.screen-background')
-        expect(backgroundDiv.exists()).toBe(true)
-        done()
-      })
+      const backgroundDiv = cmp.find('.screen-background')
+      expect(backgroundDiv.exists()).toBe(true)
     })
 
-    it('returns false (does not render the background div) if all getters are true', (done) => {
+    it('returns false (does not render the background div) if all getters are true', () => {
       uploadGetters.getFileUploadFinished.mockImplementation(() => true)
       uploadGetters.getPowFinished.mockImplementation(() => true)
       downloadGetters.getDownloadPreparationFinished.mockImplementation(() => true)
@@ -157,16 +148,13 @@ describe('LoadingScreen.test.js', () => {
       })
 
       const cmp = shallow(LoadingScreen, { store, localVue })
-      Vue.nextTick(() => {
-        const backgroundDiv = cmp.find('.screen-background')
-        expect(backgroundDiv.exists()).toBe(false)
-        done()
-      })
+      const backgroundDiv = cmp.find('.screen-background')
+      expect(backgroundDiv.exists()).toBe(false)
     })
   })
 
   describe('computed property showText', () => {
-    it('returns the upload text/ shows the upload text in the h2 tag if the getUploadText returns a not empty String', (done) => {
+    it('returns the upload text/ shows the upload text in the h2 tag if the getUploadText returns a not empty String', () => {
       uploadGetters.getUploadText.mockImplementation(() => 'Uploading')
       downloadGetters.getDownloadText.mockImplementation(() => '')
 
@@ -186,14 +174,11 @@ describe('LoadingScreen.test.js', () => {
       })
 
       const cmp = shallow(LoadingScreen, { store, localVue })
-      Vue.nextTick(() => {
-        const h2 = cmp.find('h2')
-        expect(h2.text()).toBe('Uploading')
-        done()
-      })
+      const h2 = cmp.find('h2')
+      expect(h2.text()).toBe('Uploading')
     })
 
-    it('returns the download text/ shows the download text in the h2 tag if the getDownloadText returns a not empty String', (done) => {
+    it('returns the download text/ shows the download text in the h2 tag if the getDownloadText returns a not empty String', () => {
       uploadGetters.getUploadText.mockImplementation(() => '')
       downloadGetters.getDownloadText.mockImplementation(() => 'Downloading')
 
@@ -213,14 +198,11 @@ describe('LoadingScreen.test.js', () => {
       })
 
       const cmp = shallow(LoadingScreen, { store, localVue })
-      Vue.nextTick(() => {
-        const h2 = cmp.find('h2')
-        expect(h2.text()).toBe('Downloading')
-        done()
-      })
+      const h2 = cmp.find('h2')
+      expect(h2.text()).toBe('Downloading')
     })
 
-    it('returns an empty string/ shows an empty string in the h2 tag if the getDownloadText and getUploadText return an empty String', (done) => {
+    it('returns an empty string/ shows an empty string in the h2 tag if the getDownloadText and getUploadText return an empty String', () => {
       uploadGetters.getUploadText.mockImplementation(() => '')
       downloadGetters.getDownloadText.mockImplementation(() => '')
 
@@ -240,11 +222,8 @@ describe('LoadingScreen.test.js', () => {
       })
 
       const cmp = shallow(LoadingScreen, { store, localVue })
-      Vue.nextTick(() => {
-        const h2 = cmp.find('h2')
-        expect(h2.text()).toBe('')
-        done()
-      })
+      const h2 = cmp.find('h2')
+      expect(h2.text()).toBe('')
     })
   })
 })
