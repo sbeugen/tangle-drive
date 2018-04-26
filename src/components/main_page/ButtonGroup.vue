@@ -1,7 +1,7 @@
 <template>
   <div class="button-group">
-    <button :class="{ upload_active: getUploadActive }" @click="handleUploadButton()">Upload</button>
-    <button :class="{ download_active: getDownloadActive }" @click="handleDownloadButton()">Download</button>
+    <button :class="{ active: getUploadActive }" @click="handleUploadButton()">Upload</button>
+    <button :class="{ active: getDownloadActive }" @click="handleDownloadButton()">Download</button>
   </div>
 </template>
 
@@ -58,7 +58,7 @@
   button:hover {
    border-color: #87ceeb;
   }
-  .upload_active, .download_active {
+  .active {
     background-color: #87ceeb;
   }
 </style>
