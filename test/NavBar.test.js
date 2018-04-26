@@ -3,6 +3,9 @@ import NavBar from '../src/components/NavBar'
 
 describe('NavBar.test.js', () => {
   let cmp
+  const $router = {
+    push: jest.fn()
+  }
 
   beforeEach(() => {
     cmp = shallow(NavBar)
@@ -17,6 +20,13 @@ describe('NavBar.test.js', () => {
 
     cmp.find('li').trigger('click')
     expect(cmp.vm.gitHubClickHandler).toBeCalled()
+  })
+
+  it('window.open is calles in the gitHubClickHandler', () => {
+    window.open = jest.fn()
+
+    cmp.find('li').trigger('click')
+    expect(window.open).toBeCalled()
   })
 })
 

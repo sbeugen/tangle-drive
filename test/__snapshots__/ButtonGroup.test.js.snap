@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup.test.js snapshot has expected html structure 1`] = `
+<div
+  class="button-group"
+>
+  <button
+    class="active"
+  >
+    Upload
+  </button>
+   
+  <button
+    class=""
+  >
+    Download
+  </button>
+</div>
+`;
