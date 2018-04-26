@@ -108,8 +108,10 @@
       "!**/node_modules/**",
       "!src/store/modules/**/index.js",
       "!src/store/index.js",
-      "!src/plugin/**",
-      "!src/eventBus/**"
+      "!src/plugins/**",
+      "!src/components/BackNavBar.vue",
+      "!src/components/extern/**",
+      "!src/components/about_page/**"
     ]
   
   }
