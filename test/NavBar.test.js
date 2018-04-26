@@ -1,4 +1,4 @@
-import { shallow} from '@vue/test-utils'
+import { shallow} from 'vue-test-utils'
 import NavBar from '../src/components/NavBar'
 
 describe('NavBar.test.js', () => {

@@ -1,0 +1,1 @@
+import { shallow, createLocalVue } from 'vue-test-utils'
