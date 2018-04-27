@@ -4,12 +4,12 @@
     <div class="file-input-grp">
       <input class="file-input" type="input" v-model="getFileFromState.name" placeholder="Select a File" disabled="true">
       <input type="file" id="file-selector" @change="setSelectedFile" hidden> <!--This input is needed to open the file picker dialog-->
-      <button @click="openFilePicker" :disabled="disabled">File</button>
+      <button @click="openFilePicker()" :disabled="disabled">File</button>
       <br>
       <br>
       <template v-if="getFileFromState">
         <p>2. Upload your file.</p>
-        <button @click="uploadClickHandler" :disabled="uploadDisabled">Upload</button>
+        <button @click="uploadClickHandler()" :disabled="uploadDisabled">Upload</button>
       </template>
       <template v-if="getBundleHashFromState">
         <p>3. This is your bundle hash. Share it with people you want to download your file.</p>
@@ -110,7 +110,7 @@
     padding: 9px 5px;
     background-color: white;
   }
-  butten:disabled, button[disabled] {
+  button:disabled, button[disabled] {
     background: lightblue;
   }
 </style>
