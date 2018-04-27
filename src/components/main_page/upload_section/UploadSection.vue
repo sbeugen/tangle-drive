@@ -3,7 +3,7 @@
     <p>1. Select a file you want to upload to the Tangle.</p>
     <div class="file-input-grp">
       <input class="file-input" type="input" v-model="getFileFromState.name" placeholder="Select a File" disabled="true">
-      <input type="file" id="file-selector" @change="setSelectedFile" hidden> <!--This input is needed to open the file picker dialog-->
+      <input type="file" id="file-selector" @click="fileInputClickHandler()" @change="setSelectedFile" hidden> <!--This input is needed to open the file picker dialog-->
       <button @click="openFilePicker()" :disabled="disabled">File</button>
       <br>
       <br>
@@ -33,6 +33,9 @@
     methods: {
       openFilePicker() {
         document.getElementById('file-selector').click()
+      },
+      fileInputClickHandler() {
+        return null
       },
       setSelectedFile(event) {
         if (event.target.files.length > 0) {

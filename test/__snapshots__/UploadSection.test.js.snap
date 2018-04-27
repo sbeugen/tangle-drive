@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UploadSection.test.js Directly after mount has expected html structure 1`] = `
+<div>
+  <p>
+    1. Select a file you want to upload to the Tangle.
+  </p>
+   
+  <div
+    class="file-input-grp"
+  >
+    <input
+      class="file-input"
+      disabled="disabled"
+      placeholder="Select a File"
+      type="input"
+    />
+     
+    <input
+      hidden="hidden"
+      id="file-selector"
+      type="file"
+    />
+     
+    <button>
+      File
+    </button>
+     
+    <br />
+     
+    <br />
+     
+    <!---->
+     
+    <!---->
+  </div>
+</div>
+`;
