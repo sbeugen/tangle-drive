@@ -166,4 +166,54 @@ describe('UploadSection.test.js', () => {
       expect(uploadActions.uploadFileToTangle).toBeCalled()
     })
   })
+
+  describe('When bundleHash is set in the State', () => {
+    it('has three p-elements and three input-elements', () => {
+      uploadGetters.getFileFromState.mockImplementation(() => 'file')
+      uploadGetters.getBundleHashFromState.mockImplementation(() => 'bundleHash')
+      store = new Vuex.Store({
+        strict: true,
+        modules: {
+          upload: {
+            namespaced: true,
+            getters: uploadGetters,
+            actions: uploadActions
+          },
+          download: {
+            namespaced: true,
+            actions: downloadActions
+          }
+        }
+      })
+      cmp = shallow(UploadSection, { store, localVue })
+      
+      expect(cmp.findAll('p').length).toEqual(3)
+      expect(cmp.findAll('input').length).toEqual(3)
+    })
+
+    it('bundleClickHandler is called on click on the bundleHash input', () => {
+      uploadGetters.getFileFromState.mockImplementation(() => 'file')
+      uploadGetters.getBundleHashFromState.mockImplementation(() => 'bundleHash')
+      store = new Vuex.Store({
+        strict: true,
+        modules: {
+          upload: {
+            namespaced: true,
+            getters: uploadGetters,
+            actions: uploadActions
+          },
+          download: {
+            namespaced: true,
+            actions: downloadActions
+          }
+        }
+      })
+      cmp = shallow(UploadSection, { store, localVue })
+
+      cmp.vm.bundleClickHandler = jest.fn()
+
+      cmp.findAll('input').at(2).trigger('click')
+      expect(cmp.vm.bundleClickHandler).toBeCalled()
+    })
+  })
 })

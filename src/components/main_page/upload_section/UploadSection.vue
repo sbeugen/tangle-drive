@@ -13,7 +13,7 @@
       </template>
       <template v-if="getBundleHashFromState">
         <p>3. This is your bundle hash. Share it with people you want to download your file.</p>
-        <input class="bundle-hash" id="bundleHash" type="text" v-model="getBundleHashFromState" placeholder="Bundle Hash" @click="bundleClickHandler">
+        <input class="bundle-hash" id="bundleHash" type="text" v-model="getBundleHashFromState" placeholder="Bundle Hash" @click="bundleClickHandler()">
       </template>
     </div>
   </div>
