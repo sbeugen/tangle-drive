@@ -81,7 +81,89 @@ describe('UploadSection.test.js', () => {
     // })
   })
 
-  describe('On change of the fileInput', () => {
+  // describe('On change of the fileInput', () => {
+  //   it('calles setSelectedFile', () => {
+  //     Not testable, as setting a file programaticaly is not allowed
+  //     cmp.vm.setSelectedFile = jest.fn()
+  //     cmp.setData({ selection: 'test' })
+  //     expect(cmp.vm.setSelectedFile).toBeCalled()
+  //   })
 
+  //   it('functions inside setSelectedFile are called', {
+
+  //   })
+  // })
+
+  describe('When file was set to state', () => {
+    it('has two p-elements and two buttons', () => {
+      uploadGetters.getFileFromState.mockImplementation(() => 'file')
+      store = new Vuex.Store({
+        strict: true,
+        modules: {
+          upload: {
+            namespaced: true,
+            getters: uploadGetters,
+            actions: uploadActions
+          },
+          download: {
+            namespaced: true,
+            actions: downloadActions
+          }
+        }
+      })
+
+      cmp = shallow(UploadSection, { store, localVue })
+      expect(cmp.findAll('p').length).toBe(2)
+      expect(cmp.findAll('button').length).toBe(2)
+    })
+  })
+
+  describe('On click on the uploadButton', () => {
+    it('uploadClickHandler is called', () => {
+      uploadGetters.getFileFromState.mockImplementation(() => 'file')
+      store = new Vuex.Store({
+        strict: true,
+        modules: {
+          upload: {
+            namespaced: true,
+            getters: uploadGetters,
+            actions: uploadActions
+          },
+          download: {
+            namespaced: true,
+            actions: downloadActions
+          }
+        }
+      })
+      cmp = shallow(UploadSection, { store, localVue })
+      cmp.vm.uploadClickHandler = jest.fn()
+      cmp.findAll('button').at(1).trigger('click')
+
+      expect(cmp.vm.uploadClickHandler).toBeCalled()
+    })
+
+    it('changes inside uploadClickHandler are made and action is called', () => {
+      uploadGetters.getFileFromState.mockImplementation(() => 'file')
+      store = new Vuex.Store({
+        strict: true,
+        modules: {
+          upload: {
+            namespaced: true,
+            getters: uploadGetters,
+            actions: uploadActions
+          },
+          download: {
+            namespaced: true,
+            actions: downloadActions
+          }
+        }
+      })
+      cmp = shallow(UploadSection, { store, localVue })
+      cmp.findAll('button').at(1).trigger('click')
+
+      expect(cmp.vm.disabled).toBe(true)
+      expect(cmp.vm.uploadDisabled).toBe(true)
+      expect(uploadActions.uploadFileToTangle).toBeCalled()
+    })
   })
 })
