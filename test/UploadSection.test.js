@@ -72,27 +72,25 @@ describe('UploadSection.test.js', () => {
       fileButton.trigger('click')
       expect(cmp.vm.openFilePicker).toBeCalled()
     })
-    // Testing if fileInput is clicked is not working
-    // it('openFilePicker clicks on fileInput -> ', () => {
-    //   cmp.vm.fileInputClickHandler = jest.fn()
-    //   let fileButton = cmp.findAll('button').at(0)
-    //   fileButton.trigger('click')
-    //   expect(cmp.vm.fileInputClickHandler).toBeCalled()
-    // })
+
+    it('openFilePicker clicks on fileInput -> ', () => {
+      cmp.vm.fileInputClickHandler = jest.fn()
+      cmp.findAll('input').at(1).trigger('click')
+      expect(cmp.vm.fileInputClickHandler).toBeCalled()
+    })
   })
 
-  // describe('On change of the fileInput', () => {
-  //   it('calles setSelectedFile', () => {
-  //     Not testable, as setting a file programaticaly is not allowed
-  //     cmp.vm.setSelectedFile = jest.fn()
-  //     cmp.setData({ selection: 'test' })
-  //     expect(cmp.vm.setSelectedFile).toBeCalled()
-  //   })
+  describe('On change of the fileInput', () => {
+    it('calles setSelectedFile', () => {
+      cmp.vm.setSelectedFile = jest.fn()
+      cmp.findAll('input').at(1).trigger('change')
+      expect(cmp.vm.setSelectedFile).toBeCalled()
+    })
 
   //   it('functions inside setSelectedFile are called', {
 
   //   })
-  // })
+  })
 
   describe('When file was set to state', () => {
     it('has two p-elements and two buttons', () => {
