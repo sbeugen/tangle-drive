@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DownloadSection.test.js Directly after mount has expected html structure 1`] = `
+<div>
+  <p>
+    1. Simply paste your bundle hash and download the file.
+  </p>
+   
+  <input
+    class="bundle-hash"
+    placeholder="Paste your bundle hash"
+    type="text"
+  />
+   
+  <br />
+   
+  <br />
+   
+  <!---->
+</div>
+`;

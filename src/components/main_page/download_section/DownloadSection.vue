@@ -1,19 +1,18 @@
 <template>
   <div>
     <p>1. Simply paste your bundle hash and download the file.</p>
-    <input type="text" class="bundle-hash" @change="bundleInputChangeHandler" v-model="bundleHash" placeholder="Paste your bundle hash">
+    <input type="text" class="bundle-hash" @change="bundleInputChangeHandler()" v-model="bundleHash" placeholder="Paste your bundle hash">
     <br>
     <br>
     <template v-if="bundleHash">
       <p>2. Download the file.</p>
-      <button @click="downloadClickHandler" :disabled="disabled">Download</button>
+      <button @click="downloadClickHandler()" :disabled="disabled">Download</button>
     </template>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'; 
-  import iota from '@/plugins/iota' 
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     data() {
