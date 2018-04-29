@@ -85,10 +85,11 @@ describe('DownloadSection.test.js', () => {
       expect(cmp.vm.downloadClickHandler).toBeCalled()
     })
 
-    // it('prepareDownload action is called inside downloadClickHandler', () => {
-    //   cmp.setData({ bundleHash: BUNDLE_HASH })
-    //   cmp.find('button').trigger('click')
-    //   expect(downloadActions.prepareDownload).toBeCalled()
-    // })
+    it('prepareDownload action is called inside downloadClickHandler', () => {
+      window.URL.revokeObjectURL = jest.fn()
+      cmp.setData({ bundleHash: BUNDLE_HASH })
+      cmp.find('button').trigger('click')
+      expect(downloadActions.prepareDownload).toBeCalled()
+    })
   })
 })
