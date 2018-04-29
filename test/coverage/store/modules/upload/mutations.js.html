@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,21 +30,21 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -70,47 +70,47 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default {
-  TOGGLE_UPLOAD_ACTIVE: <span class="fstat-no" title="function not covered" >(</span>state) =&gt; {
-<span class="cstat-no" title="statement not covered" >    state.upload_active = !state.upload_active</span>
+  TOGGLE_UPLOAD_ACTIVE: (state) =&gt; {
+    state.upload_active = !state.upload_active
   },
-  SET_UPLOAD_ACTIVE: <span class="fstat-no" title="function not covered" >(</span>state, payload) =&gt; {
-<span class="cstat-no" title="statement not covered" >    state.upload_active = payload</span>
+  SET_UPLOAD_ACTIVE: (state, payload) =&gt; {
+    state.upload_active = payload
   },
-  SET_FILE_TO_STATE: <span class="fstat-no" title="function not covered" >(</span>state, payload) =&gt; {
-<span class="cstat-no" title="statement not covered" >    state.file = payload</span>
+  SET_FILE_TO_STATE: (state, payload) =&gt; {
+    state.file = payload
   },
-  SET_BUNDLE_HASH_TO_STATE: <span class="fstat-no" title="function not covered" >(</span>state, payload) =&gt; {
-<span class="cstat-no" title="statement not covered" >    state.bundleHash = payload</span>
+  SET_BUNDLE_HASH_TO_STATE: (state, payload) =&gt; {
+    state.bundleHash = payload
   },
-  SET_UPLOAD_TEXT_TO_STATE: <span class="fstat-no" title="function not covered" >(</span>state, payload) =&gt; {
-<span class="cstat-no" title="statement not covered" >    state.uploadText = payload</span>
+  SET_UPLOAD_TEXT_TO_STATE: (state, payload) =&gt; {
+    state.uploadText = payload
   },
-  SET_FILE_UPLOAD_FINISHED: <span class="fstat-no" title="function not covered" >(</span>state, payload) =&gt; {
-<span class="cstat-no" title="statement not covered" >    state.fileUploadFinished = payload</span>
+  SET_FILE_UPLOAD_FINISHED: (state, payload) =&gt; {
+    state.fileUploadFinished = payload
   },
-  SET_POW_FINISHED: <span class="fstat-no" title="function not covered" >(</span>state, payload) =&gt; {
-<span class="cstat-no" title="statement not covered" >    state.powFinished = payload</span>
+  SET_POW_FINISHED: (state, payload) =&gt; {
+    state.powFinished = payload
   }
 }</pre></td></tr>
 </table></pre>
@@ -118,7 +118,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 29 2018 13:29:12 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 29 2018 13:59:46 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

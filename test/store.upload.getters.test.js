@@ -1,6 +1,6 @@
 import uploadGetters from '@/store/modules/upload/getters'
 
-describe('store.upload.getters.tesst.js', () => {
+describe('store.upload.getters.test.js', () => {
   let state = {
     upload_active: true,
     file: 'test-file',
