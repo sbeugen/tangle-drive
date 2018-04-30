@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.45% </span>
+        <span class="strong">68.18% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/22</span>
+        <span class='fraction'>15/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">58.33% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>7/12</span>
+        <span class='fraction'>9/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>5/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.45% </span>
+        <span class="strong">68.18% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/22</span>
+        <span class='fraction'>15/22</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -120,7 +120,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,11 +134,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,10 +176,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,7 +195,7 @@ export default {
       MAX_FILE_SIZE: 105000000
     }
   },
-<span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" >  methods: { </span></span></span></span>
+<span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" >  methods: { </span></span></span>
     openFilePicker() {
 <span class="cstat-no" title="statement not covered" >      document.getElementById('file-selector').click()</span>
     },
@@ -203,11 +203,11 @@ export default {
 <span class="cstat-no" title="statement not covered" >      return null</span>
     },
     setSelectedFile(event) {
-<span class="cstat-no" title="statement not covered" >      if (event.target.files.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >        if (!(event.target.files[0].size &gt; this.MAX_FILE_SIZE)){</span>
-<span class="cstat-no" title="statement not covered" >          this.setFileToState(event.target.files[0])</span>
-<span class="cstat-no" title="statement not covered" >          this.resetBundleHash()</span>
-<span class="cstat-no" title="statement not covered" >          this.uploadDisabled = false</span>
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (event.target.files.length &gt; 0) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!(event.target.files[0].size &gt; this.MAX_FILE_SIZE)){
+          this.setFileToState(event.target.files[0])
+          this.resetBundleHash()
+          this.uploadDisabled = false
         } else {
 <span class="cstat-no" title="statement not covered" >          alert('The selected file is to big. Currently it is only allowed to upload 100 MB per file.')</span>
         }
@@ -259,7 +259,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 30 2018 17:17:41 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 30 2018 17:58:10 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

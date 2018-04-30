@@ -87,9 +87,40 @@ describe('UploadSection.test.js', () => {
       expect(cmp.vm.setSelectedFile).toBeCalled()
     })
 
-  //   it('functions inside setSelectedFile are called', {
+    it('functions inside setSelectedFile are called with valid target size', () => {
+      const event = {
+        target: {
+          files: [
+            {
+              name: 'test_file',
+              size: cmp.vm.MAX_FILE_SIZE - 1
+            }
+          ]
+        }
+      }
+      cmp.vm.setSelectedFile(event)
 
-  //   })
+      expect(uploadActions.setFileToState).toBeCalled()
+      expect(uploadActions.resetBundleHash).toBeCalled()
+      expect(cmp.vm.uploadDisabled).toEqual(false)
+    })
+
+    // it('functions inside setSelectedFile are called with invalid target size', () => {
+    //   const event = {
+    //     target: {
+    //       files: [
+    //         {
+    //           name: 'test_file',
+    //           size: cmp.vm.MAX_FILE_SIZE + 100
+    //         }
+    //       ]
+    //     }
+    //   }
+    //   cmp.vm.setSelectedFile.alert = jest.fn()
+    //   cmp.vm.setSelectedFile(event)
+
+    //   expect(cmp.vm.setSelectedFile.alert).toBeCalled()
+    // })
   })
 
   describe('When file was set to state', () => {
@@ -113,7 +144,7 @@ describe('UploadSection.test.js', () => {
       cmp = shallow(UploadSection, { store, localVue })
       expect(cmp.findAll('p').length).toBe(2)
       expect(cmp.findAll('button').length).toBe(2)
-    })
+    })  
   })
 
   describe('On click on the uploadButton', () => {
