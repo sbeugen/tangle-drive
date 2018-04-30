@@ -97,7 +97,7 @@ export default {
 }
 
 const generateSeed = () => {
-  let trytes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'
+  const trytes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'
   let seed = ''
 
   for (let i = 1; i <= 81; i++){
