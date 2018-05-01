@@ -1,15 +1,15 @@
 import uploadActions from '@/store/modules/upload/actions'
 
-import iota from '@/plugins/iota.js'
-jest.mock('@/plugins/iota.js', () => ({
-  'iota.api.attachToTangle': jest.fn()
-})) 
+jest.mock('@/plugins/iota')
+jest.mock('ipfs')
 
 describe('store.upload.actions.test.js', () => {
   let commit
+  let dispatch
 
   beforeEach(() => {
     commit = jest.fn()
+    dispatch = jest.fn()
   })
 
   describe('toggleUploadActive', () => {
@@ -77,6 +77,38 @@ describe('store.upload.actions.test.js', () => {
       expect(commit.mock.calls.length).toEqual(1)
       expect(commit.mock.calls[0][0]).toEqual('SET_POW_FINISHED')
       expect(commit.mock.calls[0][1]).toEqual(payload)
+    })
+  })
+
+  describe('uploadFileToTangle', () => {
+    const payload = {
+      name: 'test_file_name',
+      size: 1,
+      __proto__: File
+    }
+
+    it('dispatch setFileUploadFinished is called in the beginning', () => {
+      uploadActions.uploadFileToTangle({ commit, dispatch }, payload)
+      
+      expect(dispatch.mock.calls.length).toBeGreaterThanOrEqual(1)
+      expect(dispatch.mock.calls[0][0]).toEqual('setFileUploadFinished')
+      expect(dispatch.mock.calls[0][1]).toEqual(false)
+    })
+
+    it('dispatch setPowFinished is called in the beginning', () => {
+      uploadActions.uploadFileToTangle({ commit, dispatch }, payload)
+      
+      expect(dispatch.mock.calls.length).toBeGreaterThanOrEqual(2)
+      expect(dispatch.mock.calls[1][0]).toEqual('setPowFinished')
+      expect(dispatch.mock.calls[1][1]).toEqual(false)
+    })
+
+    it('dispatch setUploadText is called in the beginning', () => {
+      uploadActions.uploadFileToTangle({ commit, dispatch }, payload)
+      
+      expect(dispatch.mock.calls.length).toBeGreaterThanOrEqual(3)
+      expect(dispatch.mock.calls[2][0]).toEqual('setUploadText')
+      expect(dispatch.mock.calls[2][1]).toEqual('Preparing upload...')
     })
   })
 })
