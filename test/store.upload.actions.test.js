@@ -81,11 +81,7 @@ describe('store.upload.actions.test.js', () => {
   })
 
   describe('uploadFileToTangle', () => {
-    const payload = {
-      name: 'test_file_name',
-      size: 1,
-      __proto__: File
-    }
+    const payload = new Blob()
 
     it('dispatch setFileUploadFinished is called in the beginning', () => {
       uploadActions.uploadFileToTangle({ commit, dispatch }, payload)
@@ -105,7 +101,7 @@ describe('store.upload.actions.test.js', () => {
 
     it('dispatch setUploadText is called in the beginning', () => {
       uploadActions.uploadFileToTangle({ commit, dispatch }, payload)
-      
+
       expect(dispatch.mock.calls.length).toBeGreaterThanOrEqual(3)
       expect(dispatch.mock.calls[2][0]).toEqual('setUploadText')
       expect(dispatch.mock.calls[2][1]).toEqual('Preparing upload...')
