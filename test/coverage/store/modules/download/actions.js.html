@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.79% </span>
+        <span class="strong">86.21% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/29</span>
+        <span class='fraction'>25/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>4/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">44.44% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/9</span>
+        <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.79% </span>
+        <span class="strong">86.21% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/29</span>
+        <span class='fraction'>25/29</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,37 +112,37 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,38 +166,38 @@ export default {
   setDownloadActive: ({ commit }, payload) =&gt; {
     commit('SET_DOWNLOAD_ACTIVE', payload)
   },
-  prepareDownload: <span class="fstat-no" title="function not covered" >({</span> commit, dispatch }, payload) =&gt; {
-<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve, reject) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      dispatch('setDownloadPreparationFinished', false)</span>
-<span class="cstat-no" title="statement not covered" >      dispatch('setDownloadText', 'Preparing download...')</span>
-<span class="cstat-no" title="statement not covered" >      iota.api.findTransactionObjects({bundles: [payload]}, <span class="fstat-no" title="function not covered" >(e</span>rror, success) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if (error) {</span>
+  prepareDownload: ({ commit, dispatch }, payload) =&gt; {
+    return new Promise((resolve, reject) =&gt; {
+      dispatch('setDownloadPreparationFinished', false)
+      dispatch('setDownloadText', 'Preparing download...')
+      iota.api.findTransactionObjects({bundles: [payload]}, (error, success) =&gt; {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (error) {
 <span class="cstat-no" title="statement not covered" >          reject(error)</span>
         } else {
-          const jsonString = <span class="cstat-no" title="statement not covered" >iota.utils.extractJson(success)</span>
-<span class="cstat-no" title="statement not covered" >          if (!jsonString) {</span>
+          const jsonString = iota.utils.extractJson(success)
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (!jsonString) {
 <span class="cstat-no" title="statement not covered" >            reject('There is no downloadable content in your bundle hash.')</span>
           }
-          const messageObj = <span class="cstat-no" title="statement not covered" >JSON.parse(jsonString)</span>
-          const fileName = <span class="cstat-no" title="statement not covered" >messageObj.fileName</span>
-<span class="cstat-no" title="statement not covered" >          if (!fileName) {</span>
+          const messageObj = JSON.parse(jsonString)
+          const fileName = messageObj.fileName
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (!fileName) {
 <span class="cstat-no" title="statement not covered" >            reject('This Bundle is empty!')</span>
           }
-<span class="cstat-no" title="statement not covered" >          commit('SET_FILENAME_TO_STATE', fileName)</span>
+          commit('SET_FILENAME_TO_STATE', fileName)
 &nbsp;
-          const ipfs = <span class="cstat-no" title="statement not covered" >new IPFS()</span>
+          const ipfs = new IPFS()
 &nbsp;
-<span class="cstat-no" title="statement not covered" >          ipfs.on('ready', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            ipfs.files.get(messageObj.content, <span class="fstat-no" title="function not covered" >(e</span>rror, response) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >              if (error) {</span>
+          ipfs.on('ready', () =&gt; {
+            ipfs.files.get(messageObj.content, (error, response) =&gt; {
+              <span class="missing-if-branch" title="if path not taken" >I</span>if (error) {
 <span class="cstat-no" title="statement not covered" >                reject(error)</span>
               }
-              const blob = <span class="cstat-no" title="statement not covered" >new Blob([response[0].content], {type: 'application/octet-stream'})</span>
-              const blobURL = <span class="cstat-no" title="statement not covered" >URL.createObjectURL(blob)</span>
-<span class="cstat-no" title="statement not covered" >              commit('SET_FILEURL_TO_STATE', blobURL)</span>
-<span class="cstat-no" title="statement not covered" >              dispatch('setDownloadPreparationFinished', true)</span>
-<span class="cstat-no" title="statement not covered" >              dispatch('setDownloadText', '')</span>
-<span class="cstat-no" title="statement not covered" >              resolve()</span>
+              const blob = new Blob([response[0].content], {type: 'application/octet-stream'})
+              const blobURL = URL.createObjectURL(blob)
+              commit('SET_FILEURL_TO_STATE', blobURL)
+              dispatch('setDownloadPreparationFinished', true)
+              dispatch('setDownloadText', '')
+              resolve()
             })
           })
         }
@@ -217,7 +217,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 30 2018 21:06:51 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 01 2018 13:23:44 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
